@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 09:15:35 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/05 23:29:50 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/01/05 22:10:04 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/01/05 23:49:39 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
 
-# define PUSH_SWAP_H
+# define PUSH_SWAP_BONUS_H
 # include <limits.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 # include "../stack.h"
 
-void	push_swap(t_stack **a, t_stack **b);
+/*----------checker----------*/
 int		checker(t_stack **a, t_stack **b);
 
 /*----------err---------*/
@@ -52,14 +52,9 @@ void	loop_rrr(t_stack **a, t_stack **b);
 void	loop_single(t_stack **a, t_stack **b, int cost_a, int cost_b);
 
 /*---------utils-----------*/
-void	ft_putendl_fd(char *s, int fd);
-char	**ft_split(const char *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s1);
 char	*get_next_line(int fd);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi_handler(const char *s, int *n);
-int		ft_strlen(const char *s);
 
 /*---------bools----------*/
 int		is_max(int i, t_stack **a);

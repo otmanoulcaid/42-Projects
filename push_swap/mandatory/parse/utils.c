@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:38:25 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/12/31 13:56:28 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:35:07 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	fill_stack(t_stack **a, char **str)
 	i = 0;
 	while (*(str + i))
 	{
-		if (!ft_atoi(*(str + i), &nbr) || double_exist(nbr, a))
+		if (!ft_atoi_handler(*(str + i), &nbr) || double_exist(nbr, a))
 			return (0);
 		n = new_node(nbr);
 		if (!n)

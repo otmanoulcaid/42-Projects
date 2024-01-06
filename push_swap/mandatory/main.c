@@ -6,13 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 23:39:11 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/04 11:21:59 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:39:34 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print(t_stack *s);
 
 int	main(int ac, char **av)
 {

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 09:17:29 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/12/19 23:12:36 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/01/05 00:22:30 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/01/06 00:15:08 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap_bonus.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_strcmp(char *s1, char *s2)
 {
-	char	*s2;
-	size_t	i;
+	int	i;
 
 	i = 0;
-	s2 = (char *)malloc((ft_strlen((char *)s1) + 1) * sizeof(char));
-	if (!s2)
-		return (NULL);
-	while (*(s1 + i))
-	{
-		*(s2 + i) = *(s1 + i);
+	while (*(s1 + i) && *(s1 + i) && *(s1 + i) == *(s2 + i))
 		i++;
-	}
-	*(s2 + i) = '\0';
-	return (s2);
+	return (*(s1 + i) - *(s2 + i));
 }

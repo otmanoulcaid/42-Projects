@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:08:28 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/04 15:42:06 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/06 00:53:25 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sort_tree(t_stack **a, t_stack **b)
 	if (is_sorted_des(a))
 	{
 		rotate(a, "ra");
-		swap(&head->data, &head->next->data, "sa");
+		swap(&((*a)->head->data), &((*a)->head->next->data), "sa");
 	}
 	else if (head->data > head->next->data && head->data < tail->data)
 		swap(&head->data, &head->next->data, "sa");
@@ -40,7 +40,6 @@ void	sort_tree(t_stack **a, t_stack **b)
 
 void	sort_less_5(t_stack **a, t_stack **b)
 {
-	int i = 0;
 	if ((*a)->qty == 2 && (*a)->head->data > (*a)->tail->data)
 		swap(&(*a)->head->data, &(*a)->tail->data, "sa");
 	else if ((*a)->qty == 3)
@@ -62,6 +61,6 @@ void	sort_less_5(t_stack **a, t_stack **b)
 			push_in(a, ft_pop(b), "pa");
 		}
 	}
-	while (i++ < 4 && !is_sorted_as(a))
+	while (!is_sorted_as(a))
 		r_rotate(a, "rra");
 }

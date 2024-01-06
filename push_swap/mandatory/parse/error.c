@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:38:00 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/04 12:01:05 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/06 00:52:28 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_error(char **av, t_stack **a)
 			strs = ft_split(*(av + i), ' ');
 			if (!strs)
 				return (failure(*a), 0);
-			if (!fill_stack(a, strs))
+			if (!*strs || !fill_stack(a, strs))
 				return (failure(*a), free_strs(strs), 0);
 			free_strs(strs);
 		}
