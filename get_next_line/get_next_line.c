@@ -3,42 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:29:37 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/20 16:48:30 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:41:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
-{
-	static char	*buffer = NULL;
-	char		*tmp;
-	int			check;
-
-	if (fd < 0 || fd > OPEN_MAX || read(fd, buffer, 0) < 0 || BUFFER_SIZE < 1)
-	{
-		if (buffer)
-			free(buffer);
-		return (NULL);
-	}
-	if (buffer && *buffer && exist(buffer))
-		return (ft_gl(&buffer));
-	while (read_swap(&buffer, fd, &check) > 0 && !exist(buffer))
-		check++;
-	if (buffer && *buffer && exist(buffer))
-		return (ft_gl(&buffer));
-	if (buffer && *buffer)
-	{
-		tmp = strjoin("", "");
-		change(&tmp, &buffer);
-		return (tmp);
-	}
-	free(buffer);
-	return (NULL);
-}
 
 int	read_swap(char **buf, int fd, int *check)
 {
@@ -69,7 +42,7 @@ int	read_swap(char **buf, int fd, int *check)
 	return (*check);
 }
 
-char	*strjoin(char *s1, char *s2)
+static char	*strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -126,4 +99,32 @@ void	change(char **s1, char **s2)
 	help = *s1;
 	*s1 = *s2;
 	*s2 = help;
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*buffer = NULL;
+	char		*tmp;
+	int			check;
+
+	if (fd < 0 || fd > OPEN_MAX || read(fd, buffer, 0) < 0 || BUFFER_SIZE < 1)
+	{
+		if (buffer)
+			free(buffer);
+		return (NULL);
+	}
+	if (buffer && *buffer && exist(buffer))
+		return (ft_gl(&buffer));
+	while (read_swap(&buffer, fd, &check) > 0 && !exist(buffer))
+		check++;
+	if (buffer && *buffer && exist(buffer))
+		return (ft_gl(&buffer));
+	if (buffer && *buffer)
+	{
+		tmp = strjoin("", "");
+		change(&tmp, &buffer);
+		return (tmp);
+	}
+	free(buffer);
+	return (NULL);
 }
