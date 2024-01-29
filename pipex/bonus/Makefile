@@ -4,8 +4,11 @@ FLAGS = -Wall -Wextra -Werror
 SRCS = main.c \
 		utils/error.c \
 		utils/pipex.c \
-		utils/utils.c \
 		utils/cmds.c \
+		utils/utils.c \
+		utils/here_doc.c \
+		../get_next_line/get_next_line.c \
+		../get_next_line/get_next_line_utils.c
 
 LIBFT =	../libft/ft_putstr_fd.c \
 		../libft/ft_putendl_fd.c \

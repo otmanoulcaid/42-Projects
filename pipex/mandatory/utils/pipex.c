@@ -37,8 +37,6 @@ void	process(int input, int output, char *av, char **env)
 	char	**cmd;
 
 	cmd = get_cmd(av, env);
-	if (!cmd)
-		ft_throw(strerror(errno));
 	if (dup2(input, 0) < 0 || dup2(output, 1) < 0)
 		ft_throw(strerror(errno));
 	execve(cmd[0], cmd, env);

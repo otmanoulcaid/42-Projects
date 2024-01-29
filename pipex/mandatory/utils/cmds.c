@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:07:22 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/28 01:22:43 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:14:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,20 @@ char	*valid_cmd(char *cmd, char **bins)
 	i = 0;
 	while (bins[i])
 	{
-		if (*cmd != '/')
-		{
 			str_tmp1 = ft_strjoin(bins[i++], "/");
 			if (!str_tmp1)
-				ft_throw(strerror(errno));
+				(failure(bins), ft_throw(strerror(errno)));
 			str_tmp2 = ft_strjoin(str_tmp1, cmd);
 			if (!str_tmp2)
-				(free(str_tmp1), ft_throw(strerror(errno)));
+				(failure(bins), free(str_tmp1), ft_throw(strerror(errno)));
 			free(str_tmp1);
 			if (!access(str_tmp2, F_OK) && !access(str_tmp2, X_OK))
-				return (str_tmp2);
+				return (failure(bins), str_tmp2);
 			free(str_tmp2);
 			str_tmp2 = NULL;
 			str_tmp1 = NULL;
-		}
 	}
-	return (NULL);
+	return (failure(bins), NULL);
 }
 
 char	**get_cmd(char *av, char **env)
@@ -46,6 +43,12 @@ char	**get_cmd(char *av, char **env)
 	char	**full_cmd;
 	char	*cmd;
 
+	if (*av == '.' || *av == '/')
+	{
+		if (!access(av, F_OK) && !access(av, X_OK))
+			return (ft_split(av, ' '));
+		ft_throw(strerror(errno));
+	}
 	while (!ft_strnstr(*env, "PATH", 4))
 		env++;
 	bins = ft_split(ft_strchr(*env, '=') + 1, ':');
@@ -56,6 +59,6 @@ char	**get_cmd(char *av, char **env)
 		(failure(bins), ft_throw(strerror(errno)));
 	cmd = valid_cmd(*full_cmd, bins);
 	if (!cmd)
-		(failure(full_cmd), failure(bins), ft_throw(strerror(errno)));
+		(failure(full_cmd), failure(bins), ft_throw("Command not found"));
 	return (swap(full_cmd, &cmd), free(cmd), cmd = NULL, full_cmd);
 }

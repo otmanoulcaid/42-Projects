@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <unistd.h>
+# include <sys/wait.h>
 # include "../libft/libft.h"
 
 typedef struct s_pipex

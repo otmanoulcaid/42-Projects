@@ -3,11 +3,11 @@ FLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
 		utils/pipex.c \
-		utils/error.c \
 		utils/cmds.c \
 		utils/utils.c \
+		utils/error.c
 
-LIBFT =	../libft/ft_putstr_fd.c \
+UTILS =	../libft/ft_putstr_fd.c \
 		../libft/ft_putendl_fd.c \
 		../libft/ft_split.c \
 		../libft/ft_strchr.c \
@@ -18,7 +18,7 @@ LIBFT =	../libft/ft_putstr_fd.c \
 		../libft/ft_strdup.c \
 
 OBJ = ${SRCS:.c=.o}
-LIBFT_OBJ = ${LIBFT:.c=.o}
+UTILS_OBJ = ${UTILS:.c=.o}
 
 NAME = pipex
 
@@ -27,11 +27,11 @@ NAME = pipex
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) $(LIBFT_OBJ)
-	$(CC) $(OBJ) $(LIBFT_OBJ) -o $(NAME)
+$(NAME) : $(OBJ) $(UTILS_OBJ)
+	$(CC) $(OBJ) $(UTILS_OBJ) -o $(NAME)
 
 clean :
-	rm -f $(OBJ) $(LIBFT_OBJ)
+	rm -f $(OBJ) $(UTILS_OBJ)
 
 fclean : clean
 	rm -f $(NAME)
