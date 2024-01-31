@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 17:43:52 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/03 22:10:15 by ooulcaid         ###   ########.fr       */
+/*   Created: 2023/10/30 10:56:39 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/01/31 11:38:25 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_list	*l;
+	size_t	i;
 
-	if (!lst || !del)
-		return ;
-	while (*lst)
-	{
-		l = (*lst)->next;
-		del((*lst)->content);
-		free(*lst);
-		*lst = l;
-	}
-	*lst = NULL;
+	if (!n)
+		return (0);
+	i = 0;
+	while (*(s1 + i) && *(s1 + i) && *(s1 + i) == *(s2 + i) && i < n)
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)*(s1 + i) - (unsigned char)*(s2 + i));
 }
+/*
+int main()
+{
+	printf("%d\n",strncmp(NULL,NULL , 0));
+	printf("%d\n",ft_strncmp(NULL, NULL, 0));
+}*/

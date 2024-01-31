@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 22:17:14 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/10/30 22:17:34 by ooulcaid         ###   ########.fr       */
+/*   Created: 2023/10/31 16:58:19 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/01/31 09:57:43 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
-	size_t				i;
+	t_list	*elm;
 
-	if (!dst && !src)
+	elm = (t_list *)malloc(sizeof(t_list));
+	if (!elm)
 		return (NULL);
-	i = 0;
-	s = (unsigned char *)src;
-	d = (unsigned char *)dst;
-	while (i < n)
-	{
-		*(d + i) = *(s + i);
-		i++;
-	}
-	return (dst);
+	elm->data = content;
+	elm->next = NULL;
+	return (elm);
 }

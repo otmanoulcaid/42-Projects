@@ -14,22 +14,27 @@
 
 void	pipex(char **av, char **env, t_pipex *data)
 {
-	if (pipe(data->pipe) < 0)
-		ft_throw(strerror(errno));
 	data->pid[0] = fork();
 	if (data->pid[0] == -1)
 		ft_throw(strerror(errno));
 	if (!data->pid[0])
-		(close(data->pipe[0]), process(data->fd_in, data->pipe[1], av[1], env));
-	else
-		(close(data->pipe[1]), waitpid(data->pid[0], NULL, 0));
+	{
+		if (close(data->pipe[0]) < 0)
+			ft_throw(strerror(errno));
+		process(data->fd_in, data->pipe[1], av[1], env);
+	}
+	else if (close(data->pipe[1]) < 0)
+		ft_throw(strerror(errno));
 	data->pid[1] = fork();
 	if (data->pid[1] == -1)
 		ft_throw(strerror(errno));
 	if (!data->pid[1])
 		process(data->pipe[0], data->fd_out, av[2], env);
-	else
-		(close(data->pipe[1]), waitpid(data->pid[1], NULL, 0));
+	else if (close(data->pipe[0]) < 0 || close(data->fd_in) < 0
+		|| close(data->fd_out) < 0)
+		ft_throw(strerror(errno));
+	waitpid(data->pid[0], NULL, 0);
+	waitpid(data->pid[1], NULL, 0);
 }
 
 void	process(int input, int output, char *av, char **env)

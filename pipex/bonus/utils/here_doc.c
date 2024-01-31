@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:12:29 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/29 11:37:41 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/29 17:12:07 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pipex(char **av, char **env, t_pipex *data)
 {
-    int     pid[2];
+	int	pid[2];
 
 	if (pipe(data->pipe) < 0)
 		ft_throw(strerror(errno));
@@ -34,25 +34,25 @@ void	pipex(char **av, char **env, t_pipex *data)
 		(close(data->pipe[1]), waitpid(pid[1], NULL, 0));
 }
 
-void    here_doc(int ac, char **av, char **env, t_pipex *data)
+void	here_doc(int ac, char **av, char **env, t_pipex *data)
 {
-    char    *line;
+	char	*line;
 
-    data->in_fd = open("here_doc", O_RDWR | O_CREAT | O_APPEND, 0777);
-    if (data->in_fd < 0)
-        ft_throw(strerror(errno));
-    data->out_fd = open(av[ac - 1], O_RDWR  | O_CREAT | O_APPEND, 0777);
-    if (data->out_fd < 0)
-        ft_throw(strerror(errno));
-    while (1)
-    {
-        ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
-        line = get_next_line(STDIN_FILENO);
-        if (!line || !ft_strncmp(line, *av, ft_strlen(*av)))
-            break ;
-        if( write(data->in_fd, line, ft_strlen(line)) < 0)
-            ft_throw(strerror(errno));
-        (free(line), line = NULL);
-    }
-    pipex(av, env, data);
+	data->in_fd = open("here_doc", O_RDWR | O_CREAT | O_APPEND, 0777);
+	if (data->in_fd < 0)
+		ft_throw(strerror(errno));
+	data->out_fd = open(av[ac - 1], O_RDWR | O_CREAT | O_APPEND, 0777);
+	if (data->out_fd < 0)
+		ft_throw(strerror(errno));
+	while (1)
+	{
+		ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
+		line = get_next_line(STDIN_FILENO);
+		if (!line || !ft_strncmp(line, *av, ft_strlen(*av)))
+			break ;
+		if (write(data->in_fd, line, ft_strlen(line)) < 0)
+			ft_throw(strerror(errno));
+		(free(line), line = NULL);
+	}
+	pipex(av, env, data);
 }

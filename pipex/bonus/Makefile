@@ -26,13 +26,13 @@ LIBFT_OBJ = ${LIBFT:.c=.o}
 
 NAME = pipex
 
-%.o : %.c pipex.h
-	$(CC) $(FLAGS) -c $< -o $@ 
-
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIBFT_OBJ)
 	$(CC) $(OBJ) $(LIBFT_OBJ) -o $(NAME)
+
+%.o : %.c pipex.h
+	$(CC) $(FLAGS) -c $< -o $@ 
 
 clean :
 	rm -f $(OBJ) $(LIBFT_OBJ)

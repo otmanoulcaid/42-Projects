@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:17:36 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/28 01:09:17 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:43:11 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ char	**get_cmd(char *av, char **env)
 	char	**full_cmd;
 	char	*cmd;
 
+	if (*av == '.' || *av == '/')
+	{
+		if (!access(av, F_OK) && !access(av, X_OK))
+			return (ft_split(av, ' '));
+		ft_throw(strerror(errno));
+	}
 	while (!ft_strnstr(*env, "PATH", 4))
 		env++;
 	bins = ft_split(ft_strchr(*env, '=') + 1, ':');

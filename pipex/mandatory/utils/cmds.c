@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:07:22 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/29 12:14:29 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/29 18:57:24 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ char	*valid_cmd(char *cmd, char **bins)
 	i = 0;
 	while (bins[i])
 	{
-			str_tmp1 = ft_strjoin(bins[i++], "/");
-			if (!str_tmp1)
-				(failure(bins), ft_throw(strerror(errno)));
-			str_tmp2 = ft_strjoin(str_tmp1, cmd);
-			if (!str_tmp2)
-				(failure(bins), free(str_tmp1), ft_throw(strerror(errno)));
-			free(str_tmp1);
-			if (!access(str_tmp2, F_OK) && !access(str_tmp2, X_OK))
-				return (failure(bins), str_tmp2);
-			free(str_tmp2);
-			str_tmp2 = NULL;
-			str_tmp1 = NULL;
+		str_tmp1 = ft_strjoin(bins[i++], "/");
+		if (!str_tmp1)
+			(failure(bins), ft_throw(strerror(errno)));
+		str_tmp2 = ft_strjoin(str_tmp1, cmd);
+		if (!str_tmp2)
+			(failure(bins), free(str_tmp1), ft_throw(strerror(errno)));
+		free(str_tmp1);
+		if (!access(str_tmp2, F_OK) && !access(str_tmp2, X_OK))
+			return (failure(bins), str_tmp2);
+		free(str_tmp2);
+		str_tmp2 = NULL;
+		str_tmp1 = NULL;
 	}
 	return (failure(bins), NULL);
 }
@@ -59,6 +59,6 @@ char	**get_cmd(char *av, char **env)
 		(failure(bins), ft_throw(strerror(errno)));
 	cmd = valid_cmd(*full_cmd, bins);
 	if (!cmd)
-		(failure(full_cmd), failure(bins), ft_throw("Command not found"));
+		(failure(full_cmd), ft_throw("Command not found"));
 	return (swap(full_cmd, &cmd), free(cmd), cmd = NULL, full_cmd);
 }

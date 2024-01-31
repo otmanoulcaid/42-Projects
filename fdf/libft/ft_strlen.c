@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ooulcaid <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 17:24:53 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/03 22:10:38 by ooulcaid         ###   ########.fr       */
+/*   Created: 2023/10/30 10:34:18 by ooulcaid          #+#    #+#             */
+/*   Updated: 2023/10/30 10:34:21 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_strlen(const char *s)
 {
-	t_list	*l;
+	int	i;
 
-	if (!lst)
-		return (NULL);
-	l = lst;
-	while (l->next)
-		l = l->next;
-	return (l);
+	i = 0;
+	while (*(s + i))
+		++i;
+	return (i);
 }
+/*
+#include <stdio.h>
+
+int main ()
+{
+	printf("%d",ft_strlen(NULL));
+}
+*/

@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 20:31:07 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/03 02:05:55 by ooulcaid         ###   ########.fr       */
+/*   Created: 2023/10/30 20:25:41 by ooulcaid          #+#    #+#             */
+/*   Updated: 2023/10/30 20:25:44 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned char	*s;
+	int				i;
 	unsigned char	cc;
-	size_t			i;
+	unsigned char	*p;
 
-	s = (unsigned char *)b;
-	cc = (unsigned char)c ;
+	p = (unsigned char *)s;
+	cc = (unsigned char)c;
 	i = 0;
-	while (i < len)
-		*(s + i++) = cc;
-	return (b);
+	while (*(p + i))
+	{
+		if (cc == *(p + i))
+			return ((char *)p + i);
+		i++;
+	}
+	if (*(p + i) == cc)
+		return ((char *)p + i);
+	return (NULL);
 }
 /*
-#include <stdio.h>
-
-int	main()
+int	main ()
 {
-	int i = 1;
-	ft_memset(&i, 153, 1);
-	ft_memset((char *)&i + 1, 8, 1);
-	ft_memset((char *)&i + 2, 0, 1);
-
-	printf("%d\n",i);
+	char t[] = "teste";
+	printf("%p,%p\n",t,  ft_strchr(t, 357));
 }*/

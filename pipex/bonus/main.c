@@ -3,25 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 10:23:53 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/29 11:28:34 by codespace        ###   ########.fr       */
+/*   Created: 2024/01/29 19:39:10 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/01/30 19:15:08 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	check(void)
-{
-	system("leaks pipex");
-}
-
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	data;
 
-	//atexit(check);
 	if (ac < 5)
 		return (perror("argument are less than 5"), 1);
 	if (ac == 6 && !ft_strncmp(av[1], "here_doc", 8))
@@ -31,5 +25,5 @@ int	main(int ac, char **av, char **env)
 		initialise(&data, av + 1, ac - 1);
 		multiple_pipes(ac - 1, av + 1, env, &data);
 	}
-	return (close(data.in_fd), close(data.out_fd), 0);
+	return (0);
 }
