@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:12:29 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/29 17:12:07 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:05:32 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	pipex(char **av, char **env, t_pipex *data)
 	if (!pid[1])
 		process(data->pipe[0], data->out_fd, av[2], env);
 	else
-		(close(data->pipe[1]), waitpid(pid[1], NULL, 0));
+		(close(data->pipe[1]), waitpid(pid[1], NULL, 0), close(data->in_fd),
+			close(data->pipe[0]), close(data->out_fd));
 }
 
 void	here_doc(int ac, char **av, char **env, t_pipex *data)
@@ -54,5 +55,7 @@ void	here_doc(int ac, char **av, char **env, t_pipex *data)
 			ft_throw(strerror(errno));
 		(free(line), line = NULL);
 	}
+	if (line)
+		free(line);
 	pipex(av, env, data);
 }

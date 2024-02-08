@@ -1,4 +1,4 @@
-#include "../../fdf.h"
+#include "../fdf.h"
 
 int	valid_arg(char **av, t_fdf *data)
 {

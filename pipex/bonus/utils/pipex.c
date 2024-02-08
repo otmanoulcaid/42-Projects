@@ -43,14 +43,15 @@ void	multiple_pipes(int ac, char **av, char **env, t_pipex *data)
 				ft_throw(strerror(errno));
 			process(data->in_fd, data->pipe[1], av[i + 1], env);
 		}
-		else if (close(data->pipe[1]) < 0 || dup2(data->pipe[0], data->in_fd) < 0
-				|| close(data->pipe[0]) < 0)
-				ft_throw(strerror(errno));
+		else if (close(data->pipe[1]) < 0
+			|| dup2(data->pipe[0], data->in_fd) < 0 || close(data->pipe[0]) < 0)
+			ft_throw(strerror(errno));
 	}
 	last_cmd(ac, av, env, data);
-	// i = 0;
-	// while (i < ac - 2)
-	// 	waitpid(data->pid[i++], NULL, 0);
+	i = 0;
+	while (i < ac - 2)
+		waitpid(data->pid[i++], NULL, 0);
+	free(data->pid);
 }
 
 void	process(int input, int output, char *av, char **env)

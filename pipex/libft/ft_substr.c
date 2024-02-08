@@ -6,18 +6,18 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:23 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/23 23:00:51 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:37:01 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, unsigned int len)
 {
 	unsigned int	i;
 	char			*t;
 	unsigned int	l;
-	size_t			buff;
+	int				buff;
 
 	if (!s)
 		return (NULL);
@@ -40,10 +40,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	*(t + i) = '\0';
 	return (t);
 }
-/*
-#include <stdio.h>
-
-int main ()
-{
-	printf("%s\n", ft_substr("hola", 0, 18446744073709551615));
-}*/

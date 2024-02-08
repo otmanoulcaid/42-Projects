@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:40:16 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/30 19:15:16 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 00:45:35 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	main(int ac, char **av, char **env)
 	if (pipe(data.pipe) < 0)
 		ft_throw(strerror(errno));
 	pipex(av + 1, env, &data);
-	return (0);
+	return (EXIT_SUCCESS);
 }

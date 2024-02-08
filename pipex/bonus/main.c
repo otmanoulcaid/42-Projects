@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:39:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/30 19:15:08 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:25:56 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	main(int ac, char **av, char **env)
 		initialise(&data, av + 1, ac - 1);
 		multiple_pipes(ac - 1, av + 1, env, &data);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

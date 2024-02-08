@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:29:17 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/29 10:58:26 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/01 22:43:09 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../libft/libft.h"
 
 int	get_index(char *s)
 {

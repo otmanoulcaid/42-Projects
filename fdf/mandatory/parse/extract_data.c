@@ -1,4 +1,6 @@
-#include "../../fdf.h"
+#include "../fdf.h"
+#include "../../get_next_line/get_next_line.h"
+
 
 static int	size_x(char *line)
 {
@@ -30,25 +32,46 @@ static	int	is_all_num(char *str)
 	return (1);
 }
 
-static int	verify_matrix(t_list *lst, t_fdf *data)
+void	get_row(char **splited_line, int *nums)
 {
-	int		i;
+	int	i;
 
+	if (!splited_line)
+		ft_throw(strerror(errno));
 	i = 0;
-	data->x_y_z = (char **)malloc(sizeof(char *) * data->size_y);
-	if (!data->x_y_z)
-		ft_throw("ERROR: (malloc)");
-	while (lst)
+	while (splited_line[i])
 	{
-		if (!is_all_num(lst->data) || size_x(lst->data) != data->size_x)
-			ft_throw("invalid file content");
-		(data->x_y_z)[i] = ft_strdup(lst->data);
-		if (!(data->x_y_z)[i++])
-			ft_throw("ERROR: (strdup)");
-		lst = lst->next;
+		nums[i] = ft_atoi(splited_line[i]);
+		i++;
 	}
-	ft_lstclear(&lst, free);
-	return (1);
+}
+
+void	fill_nums(t_fdf *data)
+{
+	t_list	*tmp;
+	char 	**splited_line;
+	int		i;
+	int		j;
+
+	data->cordinates = (int **)malloc(sizeof(int *) * data->size_x);
+	if (!data->cordinates)
+		ft_throw(strerror(errno));
+	tmp = data->list;
+	i = 0;
+	while (tmp)
+	{
+		splited_line = ft_split(tmp->data, ' ');
+		if (!splited_line)
+			ft_throw(strerror(errno));
+		data->cordinates[i] = (int *)malloc(sizeof(int) * tmp->length);
+		if (!data->cordinates[i++])
+			ft_throw(strerror(errno)), faillure(splited_line);
+		j = 0;
+		while (splited_line[j++])
+			data->cordinates[i - 1][j - 1] = ft_atoi(splited_line[j - 1]);
+		tmp = tmp->next;
+		(faillure(splited_line), splited_line = NULL);
+	}
 }
 
 int	valid_content_file(t_fdf *data)
@@ -63,19 +86,19 @@ int	valid_content_file(t_fdf *data)
 	if (fd < 0)
 		ft_throw("ERROR (OPEN)");
 	data->size_y = 0;
-	(line = get_next_line(fd));
+	data->size_x = 0;
+	line = get_next_line(fd);
 	if (!line)
 		ft_throw("ERROR: (get_next_line1)");
-	data->size_x = size_x(line);
 	while (line)
 	{
 		tmp = ft_lstnew(line);
-		if (!tmp)
-			(ft_lstclear(&list, free), ft_throw("ERROR: (creat_node)"));
-		(ft_lstadd_back(&list, tmp), data->size_y++);
+		if (!tmp || !is_all_num(tmp->data))
+			(ft_lstclear(&list, free), ft_throw("ERROR getting data from file"));
+		(ft_lstadd_back(&list, tmp), data->size_y++, tmp->length = size_x(line));
+		if (data->size_x < tmp->length)
+			data->size_x = tmp->length;
 		line = get_next_line(fd);
 	}
-	close(fd);
-	verify_matrix(list, data);
-	return (1);
+	return (data->list = list, close(fd), fill_nums(data), 1);
 }

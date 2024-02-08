@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:56:31 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/02 10:34:33 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:48:53 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strdup(const char *s1)
@@ -28,10 +29,3 @@ char	*ft_strdup(const char *s1)
 	*(s2 + i) = '\0';
 	return (s2);
 }
-/*
-#include <stdio.h>
-
-int main()
-{
-	printf("%s\n",ft_strdup("hello world "));
-}*/

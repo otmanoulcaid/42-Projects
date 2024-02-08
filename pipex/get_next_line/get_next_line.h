@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:29:27 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/30 17:46:40 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:17:53 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
-# include "../libft/libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:06:42 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/03 00:19:15 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:49:25 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, int len)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	if (!ft_strlen(needle))
 		return ((char *)haystack);
@@ -32,8 +33,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-/*
-int	main()
-{
-	printf("me->:%s:\n", ft_strnstr(NULL,"" ,1));
-}*/

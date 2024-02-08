@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:18:21 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/23 22:59:25 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 01:49:09 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	*(s + i) = '\0';
 	return (s);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-//	printf("%lu\n",strlen(NULL));
-	printf("%s",ft_strjoin("hello",NULL));
-}
-*/
