@@ -1,12 +1,18 @@
 CC = cc
 FLAGS = -Wall -Wextra -Werror
-MLXFLAGS= -lmlx -framework OpenGL -framework AppKit libmlx42.a
+MLXFLAGS= -lmlx -framework OpenGL -framework AppKit includes/libmlx42.a
 
 MAN = mandatory/main.c \
 	mandatory/parse/extract_data.c \
-	mandatory/parse/file_extention.c \
+	mandatory/parse/bool.c \
 	mandatory/parse/error.c \
-	mandatory/parse/fdf.c
+	mandatory/algo/bresenham.c \
+	mandatory/algo/fdf.c \
+	mandatory/algo/menu.c \
+	mandatory/algo/mlx_utils.c \
+	mandatory/algo/cordinate.c \
+	mandatory/algo/events1.c \
+	mandatory/algo/events2.c \
 
 LIBFT = libft/ft_atoi.c \
 		libft/ft_split.c \
@@ -42,8 +48,6 @@ all : $(NAME)
 
 $(NAME) : $(MAN_OBJ) $(LIBFT_OBJ) $(GNL_OBJ)
 	$(CC) $(MAN_OBJ) $(LIBFT_OBJ) $(GNL_OBJ) -o $(NAME) $(MLXFLAGS) -I includes
-
-# bonus : $(BONUS_NAME)
 
 clean :
 	rm -f $(MAN_OBJ) $(GNL_OBJ) $(LIBFT_OBJ)
