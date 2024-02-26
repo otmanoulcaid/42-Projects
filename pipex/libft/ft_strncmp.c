@@ -6,11 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:56:39 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/02 00:43:10 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
 int	ft_strncmp(const char *s1, const char *s2, int n)
 {

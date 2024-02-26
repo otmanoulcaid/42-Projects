@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:57:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:09:07 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:09:07 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
+	t_list	*l;
 
-	if (!s || fd < 0)
-		return ;
-	i = 0;
-	while (*(s + i))
-		write(fd, s + i++, 1);
+	l = *lst;
+	if (!l)
+		*lst = new;
+	else
+	{
+		while (l->next)
+			l = l->next;
+		l->next = new;
+	}
 }

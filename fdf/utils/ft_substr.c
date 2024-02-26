@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 11:09:23 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:07:00 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:07:00 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-char	*ft_substr(char const *s, unsigned int start, unsigned int len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	char			*t;
 	unsigned int	l;
-	int				buff;
+	size_t			buff;
 
 	if (!s)
 		return (NULL);
@@ -40,3 +40,10 @@ char	*ft_substr(char const *s, unsigned int start, unsigned int len)
 	*(t + i) = '\0';
 	return (t);
 }
+/*
+#include <stdio.h>
+
+int main ()
+{
+	printf("%s\n", ft_substr("hola", 0, 18446744073709551615));
+}*/

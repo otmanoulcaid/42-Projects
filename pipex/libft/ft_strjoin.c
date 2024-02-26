@@ -6,11 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:18:21 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/02 01:49:09 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:57:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:06:51 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:06:51 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-void	ft_putstr_fd(char *s, int fd)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
-	if (!s || fd < 0)
-		return ;
 	i = 0;
 	while (*(s + i))
-		write(fd, s + i++, 1);
+		++i;
+	return (i);
 }

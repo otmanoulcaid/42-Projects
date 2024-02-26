@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:57:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 13:47:55 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 19:21:34 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../fdf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	free_map(t_map *map)
 {
 	int	i;
 
-	if (!s || fd < 0)
-		return ;
 	i = 0;
-	while (*(s + i))
-		write(fd, s + i++, 1);
+	while (i < map->height)
+		free(map->cord[i++]);
+	ft_lstclear(&map->list, free);
+	free((map->cord));
+	free(map);
+}
+
+void	ft_throw(char *strerr)
+{
+	ft_putendl_fd(strerr, 2);
+	exit(EXIT_FAILURE);
+}
+
+void	faillure(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		(free(str[i]), str[i++] = NULL);
+	free(str);
 }

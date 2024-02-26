@@ -39,7 +39,7 @@ BONUS_NAME = pipex_bonus
 mandatory/%.o : mandatory/%.c mandatory/pipex.h
 	$(CC) $(FLAGS) -c $< -o $@
 
-libft/%.o : libft/%.c libft/libft.h
+libft/%.o : libft/%.c libft/utils.h
 	$(CC) $(FLAGS) -c $< -o $@
 
 get_next_line/%.o : get_next_line/%.c get_next_line/get_next_line.h

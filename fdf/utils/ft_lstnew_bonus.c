@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:57:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:08:57 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:08:57 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 
-void	ft_putstr_fd(char *s, int fd)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
+	t_list	*elm;
 
-	if (!s || fd < 0)
-		return ;
-	i = 0;
-	while (*(s + i))
-		write(fd, s + i++, 1);
+	elm = (t_list *)malloc(sizeof(t_list));
+	if (!elm)
+		return (NULL);
+	elm->data = content;
+	elm->next = NULL;
+	return (elm);
 }

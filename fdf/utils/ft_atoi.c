@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:57:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:09:23 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:09:23 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_atoi(const char *s)
 {
-	int	i;
+	long	n;
+	long	sign;
 
-	if (!s || fd < 0)
-		return ;
-	i = 0;
-	while (*(s + i))
-		write(fd, s + i++, 1);
+	sign = 1;
+	n = 0;
+	while (*s == ' ' || (*s >= 9 && *s <= 13))
+		s++;
+	if (*s == '+' || *s == '-')
+	{
+		if (*s == '-')
+			sign = -1;
+		s++;
+	}
+	while (*s <= '9' && *s >= '0')
+	{
+		n = (n * 10) + *s - '0';
+		if (n > 922337203685477580 && *(s + 1))
+		{
+			if (sign > 0)
+				return (-1);
+			return (0);
+		}
+		s++;
+	}
+	return ((int)(n * sign));
 }

@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 23:59:39 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:08:20 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:24:39 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+#ifndef UTILS_H
 
-# define LIBFT_H
+# define UTILS_H
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 
-char	*ft_strchr(const char *s, int c);
+int		ft_atoi(const char *s);
+void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s1);
 int		ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, int n);
-char	*ft_strnstr(const char *haystack, const char *needle, int len);
-char	*ft_substr(char const *s, unsigned int start, unsigned int len);
-char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
-void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
+
+typedef struct s_list
+{
+	int				length;
+	void			*data;
+	struct s_list	*next;
+}	t_list;
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst, void (*del)(void*));
 
 #endif

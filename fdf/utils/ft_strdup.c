@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 11:09:23 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/26 14:08:39 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/26 14:08:39 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-char	*ft_substr(char const *s, unsigned int start, unsigned int len)
+char	*ft_strdup(const char *s1)
 {
-	unsigned int	i;
-	char			*t;
-	unsigned int	l;
-	int				buff;
+	char	*s2;
+	size_t	i;
 
-	if (!s)
-		return (NULL);
-	l = (unsigned int)ft_strlen((char *)s);
 	i = 0;
-	if (start >= l)
-		return (ft_strdup(""));
-	if (len > l - start)
-		buff = l - start;
-	else
-		buff = len;
-	t = (char *)malloc((buff + 1) * sizeof(char));
-	if (!t)
+	s2 = (char *)malloc((ft_strlen((char *)s1) + 1) * sizeof(char));
+	if (!s2)
 		return (NULL);
-	while (i < len && *(s + start + i))
+	while (*(s1 + i))
 	{
-		*(t + i) = *(s + start + i);
+		*(s2 + i) = *(s1 + i);
 		i++;
 	}
-	*(t + i) = '\0';
-	return (t);
+	*(s2 + i) = '\0';
+	return (s2);
 }

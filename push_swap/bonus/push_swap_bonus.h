@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:10:04 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/05 23:49:39 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "../libft/utils.h"
 # include "../stack.h"
 
 /*----------checker----------*/

@@ -6,12 +6,12 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:29:17 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/01 22:43:09 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../libft/libft.h"
+#include "../libft/utils.h"
 
 int	get_index(char *s)
 {
