@@ -11,90 +11,89 @@
 /* ************************************************************************** */
 
 #include "../fdf.h"
-#include "../../get_next_line/get_next_line.h"
 
-static	int	size_x(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (*line)
-	{
-		while ((*line >= '0' && *line <= '9') || in_hexa(*line))
-			line++;
-		i++;
-		while (*line && (*line < '0' || *line > '9'))
-			line++;
-	}
-	return (i);
-}
-
-static	void	fill_nums(t_fdf *data)
-{
-	t_list	*tmp;
-	char	**splited_line;
-	int		i;
-	int		j;
-
-	tmp = data->map->list;
-	i = 0;
-	while (tmp)
-	{
-		splited_line = ft_split(tmp->data, ' ');
-		if (!splited_line)
-			ft_throw(strerror(errno));
-		data->map->cord[i] = malloc(sizeof(t_point) * data->map->width);
-		if (!data->map->cord[i++])
-			(faillure(splited_line), ft_throw(strerror(errno)));
-		j = 0;
-		while (splited_line[j++])
-		{
-			data->map->cord[i - 1][j - 1].z = ft_atoi(splited_line[j - 1]);
-			data->map->cord[i - 1][j - 1].y = i - 1;
-			data->map->cord[i - 1][j - 1].x = j - 1;
-		}
-		tmp = tmp->next;
-		(faillure(splited_line), splited_line = NULL);
-	}
-}
-
-static	void	init_fdf(t_fdf *fdf, char *file)
-{
-	fdf->fd = open(file, O_RDONLY);
-	if (!fdf->fd)
-		ft_throw(strerror(errno));
-	fdf->map = (t_map *)malloc(sizeof(t_map));
-	if (!fdf->map)
-		ft_throw(strerror(errno));
-	fdf->map->list = NULL;
-	fdf->map->height = 0;
-	fdf->map->width = 0;
-}
-
-int	valid_content(t_fdf *data, char *file)
+int	get_height(int fd)
 {
 	char	*line;
-	t_list	*tmp;
+	int		height;
 
+	height = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		(height++, free(line), line = NULL);
+		line = get_next_line(fd);
+	}
+	return (height);
+}
+
+static	void	init_fdf(t_fdf *data, char *file)
+{
+	data->fd = open(file, O_RDONLY);
+	if (data->fd < 0)
+		ft_throw(strerror(errno));
+	data->map = (t_map *)malloc(sizeof(t_map));
+	if (!data->map)
+		ft_throw(strerror(errno));
+	data->map->height = get_height(data->fd);
+	data->map->cord = malloc(sizeof(t_point *) * data->map->height);
+	if (!data->map->cord)
+		ft_throw(strerror(errno));
+	data->map->width = 0;
+	if (close(data->fd) < 0)
+		ft_throw(strerror(errno));
+}
+
+void	parse_line(t_fdf *data, char**line, int index,int words)
+{
+	int		i;
+
+	if (!data->map->width)
+		data->map->width = words;
+	else if (data->map->width < words)
+		ft_throw("invalid map");
+	data->map->cord[index] = (t_point *)malloc(sizeof(t_point) * words);
+	if (!data->map->cord[index])
+		ft_throw("invalid map");
+	i = 0;
+	while (line[i])
+	{
+		data->map->cord[index][i].z = ft_atoi(line[i]);
+		data->map->cord[index][i].y = index;
+		data->map->cord[index][i].x = i;
+		if (ft_strchr(line[i++], ','))
+			data->map->cord[index][i].color =
+				ft_atoi_base(ft_strchr(line[i - 1], 'x') + 1);
+		else
+			data->map->cord[index][i].color = 0xf0f0f0;
+		free(line[i - 1]);
+	}
+	(free(line), line = NULL);
+}
+
+void	parse_map(t_fdf *data, char *file)
+{
+	char	*line;
+	char	**splited_line;
+	int		j;
+	int		words;
+
+	j = 0;
 	init_fdf(data, file);
-	data->map->height = 0;
+	data->fd = open(file, O_RDONLY);
+	if (data->fd < 0)
+		ft_throw(strerror(errno));
 	while (1)
 	{
 		line = get_next_line(data->fd);
 		if (!line)
 			break ;
-		tmp = ft_lstnew(line);
-		if (!tmp || !is_all_num(tmp->data))
-			(ft_lstclear(&data->map->list, free),
-				ft_throw("ERROR getting data"));
-		ft_lstadd_back(&data->map->list, tmp);
-		data->map->height++;
-		tmp->length = size_x(line);
-		if (data->map->width < tmp->length)
-			data->map->width = tmp->length;
+		splited_line = ft_split(line, ' ', &words);
+		if (!splited_line)
+			ft_throw(strerror(errno));
+		parse_line(data, splited_line, j++, words);
+		(free(line), line = NULL);
 	}
-	data->map->cord = (t_point **)malloc(sizeof(t_point *) * data->map->height);
-	if (!data->map->cord)
+	if (close(data->fd) < 0)
 		ft_throw(strerror(errno));
-	return (close(data->fd), fill_nums(data), 1);
 }

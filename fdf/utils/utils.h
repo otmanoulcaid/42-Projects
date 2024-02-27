@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:08:20 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/26 14:24:39 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:01:09 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
+char	*ft_strchr(const char *s, int c);
 int		ft_atoi(const char *s);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s1);
@@ -24,8 +25,11 @@ int		ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c, int *words);
 void	ft_putendl_fd(char *s, int fd);
+int		is_upper(char c);
+int		is_lower(char c);
+int		ft_atoi_base(char *str);
 
 typedef struct s_list
 {

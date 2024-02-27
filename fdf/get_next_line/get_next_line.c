@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:33:41 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 17:33:41 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:45:34 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,7 @@ char	*get_next_line(int fd)
 	int			check;
 
 	if (fd < 0 || read(fd, buffer, 0) < 0 || BUFFER_SIZE < 1)
-	{
-		if (buffer)
-			free(buffer);
 		return (NULL);
-	}
 	if (buffer && *buffer && exist(buffer))
 		return (ft_gl(&buffer));
 	while (read_swap(&buffer, fd, &check) > 0 && !exist(buffer))
@@ -124,6 +120,6 @@ char	*get_next_line(int fd)
 		change(&tmp, &buffer);
 		return (tmp);
 	}
-	free(buffer);
+	// free(buffer);
 	return (NULL);
 }

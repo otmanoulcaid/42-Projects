@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:09:23 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 23:00:21 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/27 20:39:30 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/27 20:39:48 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_atoi(const char *s)
+int	ft_atoi_base(char *str)
 {
-	int	n;
-	int	sign;
+	int	nbr;
 
-	sign = 1;
-	n = 0;
-	while (*s == ' ' || (*s >= 9 && *s <= 13))
-		s++;
-	if (*s == '+' || *s == '-')
+	nbr = 0;
+	while (*str)
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		if (is_upper(*str))
+			nbr += (nbr * 16 + ((*str - 65) + 10));
+		else if (is_lower(*str))
+			nbr += (nbr * 16 + ((*str - 97) + 10));
+		else
+			nbr += (nbr * 16 + ((*str - 48) + 10));
+		str++;
 	}
-	while (*s <= '9' && *s >= '0')
-	{
-		n = (n * 10) + *s - '0';
-		s++;
-	}
-	return ((int)(n * sign));
+	return (nbr);
 }

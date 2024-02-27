@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:08:46 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/26 14:08:46 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:02:28 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,19 @@ static int	len_word(char const *s, char c)
 	return (i);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, int *words)
 {
 	char	**strings;
-	int		words;
 	int		i;
 
 	if (!s)
 		return (NULL);
-	words = count(s, c);
-	strings = (char **)malloc((words + 1) * sizeof(char *));
+	*words = count(s, c);
+	strings = (char **)malloc((*words + 1) * sizeof(char *));
 	if (!strings)
 		return (NULL);
 	i = 0;
-	while (i < words)
+	while (i < *words)
 	{
 		s = get_offset(s, c);
 		*(strings + i) = ft_substr(s, 0, len_word(s, c));

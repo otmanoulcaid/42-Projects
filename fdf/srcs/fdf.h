@@ -5,15 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 19:28:14 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:28:14 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/27 20:56:50 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/28 00:09:33 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
 # define FDF_H
-# include "../utils/utils.h"
+
+#include "../get_next_line/get_next_line.h"
+#include "../utils/utils.h"
 # include <stdio.h>
 # include <errno.h>
 # include <string.h>
@@ -28,7 +30,6 @@
 # define MAX_WIDTH 1800
 # define MAX_HEIGH 1000
 # define MENU_WIDTH 150
-# define ZOOM 60
 # pragma GCC diagnostic ignored "-Wunused-parameter"
 
 typedef enum keys_s
@@ -99,13 +100,13 @@ void	ft_throw(char *strerr);
 char	*get_next_line(int fd);
 
 /*--------bool-------*/
-int		valid_arg(char **av, t_fdf *data);
-int		valid_content(t_fdf *fdf, char *av);
+int		valid_extention(char *av);
 int		is_all_num(char *str);
 int		ternary(int boolean, int a, int b);
 int		in_hexa(char c);
 
 /*------------fdf----------*/
+void	parse_map(t_fdf *fdf, char *av);
 void	my_mlx_pixel_put(t_fdf *data, t_point *x, t_point *y);
 void	init_mlx_content(t_fdf *data);
 void	fdf(t_fdf *data);

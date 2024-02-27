@@ -12,11 +12,9 @@
 
 #include "fdf.h"
 
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-
 void	check(void)
 {
-	system("lsof -c ./fdf");
+	system("leaks fdf");
 }
 
 int	main(int ac, char **av)
@@ -24,8 +22,9 @@ int	main(int ac, char **av)
 	t_fdf	data;
 
 	atexit(check);
-	if (ac != 2 || !valid_arg(av + 1, &data) || !valid_content(&data, av[1]))
+	if (ac != 2 || !valid_extention(av[1]))
 		ft_throw("invalid data");
+	parse_map(&data, av[1]);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		ft_throw("init Error");

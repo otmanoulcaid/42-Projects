@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 20:42:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 17:48:33 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:58:51 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	get_zoom(t_fdf *data)
 
 void	init_mlx_content(t_fdf *data)
 {
+	errno = 0;
 	data->is_iso = 1;
 	data->zoom = get_zoom(data);
 	data->x_scale = 0;

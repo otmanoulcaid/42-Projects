@@ -21,7 +21,8 @@ int	in_hexa(char c)
 {
 	return (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e'
 		|| c == 'f' || c == 'A' || c == 'B' || c == 'C' || c == 'D'
-		|| c == 'E' || c == 'F' || c == 'x' || c == ',' || c == '-');
+		|| c == 'E' || c == 'F' || c == 'x' || c == ',' || c == '-'
+		|| c == '+');
 }
 
 int	is_all_num(char *str)
@@ -38,13 +39,13 @@ int	is_all_num(char *str)
 	return (1);
 }
 
-int	valid_arg(char **av, t_fdf *data)
+int	valid_extention(char *av)
 {
 	char	*s;
 
 	s = NULL;
 	if (av)
-		s = ft_strrchr(*av, '.');
+		s = ft_strrchr(av, '.');
 	if (s && !ft_strncmp(s + 1, "fdf", 3))
 		return (1);
 	return (0);

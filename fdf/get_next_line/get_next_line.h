@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:29:27 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:40:19 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 23:13:53 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include "../utils/utils.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 2147483645
 # endif
 
 char	*get_next_line(int fd);
@@ -30,3 +31,4 @@ void	ft_cpy(char *dst, char *src, unsigned int len);
 void	change(char **s1, char **s2);
 
 #endif
+

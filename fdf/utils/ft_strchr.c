@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:09:23 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 23:00:21 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/02/27 20:52:01 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/27 20:52:01 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_atoi(const char *s)
+char	*ft_strchr(const char *s, int c)
 {
-	int	n;
-	int	sign;
+	int				i;
+	unsigned char	cc;
+	unsigned char	*p;
 
-	sign = 1;
-	n = 0;
-	while (*s == ' ' || (*s >= 9 && *s <= 13))
-		s++;
-	if (*s == '+' || *s == '-')
+	p = (unsigned char *)s;
+	cc = (unsigned char)c;
+	i = 0;
+	while (*(p + i))
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		if (cc == *(p + i))
+			return ((char *)p + i);
+		i++;
 	}
-	while (*s <= '9' && *s >= '0')
-	{
-		n = (n * 10) + *s - '0';
-		s++;
-	}
-	return ((int)(n * sign));
+	if (*(p + i) == cc)
+		return ((char *)p + i);
+	return (NULL);
 }
