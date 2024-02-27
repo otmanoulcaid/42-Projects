@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 22:39:49 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:04:31 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <sys/wait.h>
-# include "../libft/utils.h"
+# include "../libft/libft.h"
 
 typedef struct s_pipex
 {

@@ -6,11 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:04:07 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:05:40 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {

@@ -6,11 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:23 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:06:48 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, unsigned int len)
 {

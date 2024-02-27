@@ -6,11 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:06:42 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:07:42 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, int len)
 {

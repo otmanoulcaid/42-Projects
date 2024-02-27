@@ -6,11 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 20:25:41 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/25 19:36:57 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:07:23 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

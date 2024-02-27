@@ -6,10 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:34:18 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/02 01:49:15 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:07:34 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
 int	ft_strlen(const char *s)
 {

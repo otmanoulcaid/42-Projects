@@ -6,7 +6,7 @@
 #    By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 19:28:21 by ooulcaid          #+#    #+#              #
-#    Updated: 2024/02/26 20:45:00 by ooulcaid         ###   ########.fr        #
+#    Updated: 2024/02/27 11:52:26 by ooulcaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,24 +48,26 @@ GNL_OBJ = $(GNL:.c=.o)
 NAME = fdf
 
 srcs/%.o : srcs/%.c srcs/fdf.h
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 utils/%.o : utils/%.c utils/utils.h
-	$(CC) $(FLAGS) -c $< -o $@
-
+	@$(CC) $(FLAGS) -c $< -o $@
+	
 get_next_line/%.o : get_next_line/%.c get_next_line/get_next_line.h
-	$(CC) $(FLAGS) -c $< -o $@
-
+	@$(CC) $(FLAGS) -c $< -o $@
+	
 all : $(NAME)
-
-$(NAME) : $(MAN_OBJ) $(UTILS_OBJ) $(GNL_OBJ)
-	$(CC) $(MAN_OBJ) $(UTILS_OBJ) $(GNL_OBJ) -o $(NAME) $(MLXFLAGS)
-
+	
 clean :
-	rm -f $(MAN_OBJ) $(GNL_OBJ) $(UTILS_OBJ)
+	@echo "\033[32;1;3m cleaning..."
+	@rm -f $(MAN_OBJ) $(GNL_OBJ) $(UTILS_OBJ)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+
+$(NAME) : $(MAN_OBJ) $(UTILS_OBJ) $(GNL_OBJ)
+	@echo "\033[32;1;3m compiling succesfully done"
+	@$(CC) $(MAN_OBJ) $(UTILS_OBJ) $(GNL_OBJ) -o $(NAME) $(MLXFLAGS)
 
 re : fclean all
 

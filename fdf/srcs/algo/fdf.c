@@ -33,12 +33,7 @@ void	draw_bg(t_fdf *data)
 	i = 0;
 	img = (int *)data->map->img_addr;
 	while (i < MAX_HEIGH * MAX_WIDTH)
-	{
-		if (i % MAX_WIDTH < MAX_WIDTH / 5)
-			img[i++] = 0x18171d;
-		else
-			img[i++] = 0x242424;
-	}
+		img[i++] = 0x242424;
 }
 
 void	fdf(t_fdf *data)

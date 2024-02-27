@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 12:29:17 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/01/29 10:58:26 by codespace        ###   ########.fr       */
+/*   Created: 2024/02/27 17:33:29 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/02/27 17:33:30 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

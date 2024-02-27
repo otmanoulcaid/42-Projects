@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 13:46:46 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 00:21:01 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:54:09 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_color(t_point *a, t_point *b)
 
 void	my_mlx_pixel_put(t_fdf *data, t_point *a, t_point *b)
 {
-	int				i;
+	int			i;
 	static int	j;
 	int			color;
 
