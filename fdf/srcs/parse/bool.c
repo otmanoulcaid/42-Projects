@@ -17,27 +17,36 @@ int	ternary(int boolean, int a, int b)
 	return ((boolean * a) + (!boolean * b));
 }
 
-int	in_hexa(char c)
+int	in_hexa(char *str)
 {
-	return (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e'
-		|| c == 'f' || c == 'A' || c == 'B' || c == 'C' || c == 'D'
-		|| c == 'E' || c == 'F' || c == 'x' || c == ',' || c == '-'
-		|| c == '+');
-}
+	int	i;
 
-int	is_all_num(char *str)
-{
-	while (*str && *str != '\n')
+	i = 0;
+	while (str[i])
 	{
-		while (*str && *str == ' ')
-			str++;
-		if (*str && *str < '0' && *str > '9' && !in_hexa(*str))
-			return (printf("%c\n",*str), 0);
-		if (*str)
-			str++;
+		if ((str[i] >= 'a' && str[i] <= 'f') || (str[i] >= 'A' && str[i] <= 'F')
+			|| str[i] == 'x' || str[i] == ',' || str[i] == '-' || str[i] == '+'
+			|| (str[i] >= '0' && str[i] <= '9') || str[i]== ' ')
+			i++;
+		else
+			return (0);
 	}
 	return (1);
 }
+
+// int	is_all_num(char *str)
+// {
+// 	while (*str && *str != '\n')
+// 	{
+// 		while (*str && *str == ' ')
+// 			str++;
+// 		if (*str && *str < '0' && *str > '9' && !in_hexa(*str))
+// 			return (printf("%c\n",*str), 0);
+// 		if (*str)
+// 			str++;
+// 	}
+// 	return (1);
+// }
 
 int	valid_extention(char *av)
 {

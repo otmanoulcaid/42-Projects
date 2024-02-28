@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 20:56:50 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/28 00:09:33 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:43:20 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 # define FDF_H
 
-#include "../get_next_line/get_next_line.h"
-#include "../utils/utils.h"
+# include "../utils/utils.h"
 # include <stdio.h>
 # include <errno.h>
 # include <string.h>
@@ -96,19 +95,22 @@ typedef struct s_fdf
 void	faillure(char **str);
 void	ft_throw(char *strerr);
 
-/*-----------utils----------*/
-char	*get_next_line(int fd);
-
 /*--------bool-------*/
 int		valid_extention(char *av);
 int		is_all_num(char *str);
 int		ternary(int boolean, int a, int b);
-int		in_hexa(char c);
+int		in_hexa(char *str);
+
+/*--------getters--------*/
+
+int		get_zoom(t_fdf *data);
+int		get_color(t_point *a, t_point *b);
 
 /*------------fdf----------*/
 void	parse_map(t_fdf *fdf, char *av);
 void	my_mlx_pixel_put(t_fdf *data, t_point *x, t_point *y);
 void	init_mlx_content(t_fdf *data);
+void	init_fdf(t_fdf *data, char *file, int height);
 void	fdf(t_fdf *data);
 void	bresenham(t_point p1, t_point p2, t_fdf *data);
 void	draw_bg(t_fdf *data);

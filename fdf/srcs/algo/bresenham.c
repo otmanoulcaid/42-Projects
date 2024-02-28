@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 13:47:32 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 17:31:26 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:03:32 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void	slope_less_than_one(t_fdf *data, t_point d, t_point *a, t_point *b)
 {
 	int	p;
 	int	i;
+	int	color;
 
 	i = -1;
 	p = 2 * abs(d.y) - abs(d.x);
 	while (++i < abs(d.x))
 	{
+		color = get_color(a, b);
 		my_mlx_pixel_put(data, a, b);
 		if (d.x > 0)
 			a->x += 1;

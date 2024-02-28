@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:07:00 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/26 14:07:00 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:51:24 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t			buff;
 
 	if (!s)
-		return (NULL);
+		return (ft_strdup(""));
 	l = (unsigned int)ft_strlen((char *)s);
 	i = 0;
 	if (start >= l)
@@ -40,10 +40,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	*(t + i) = '\0';
 	return (t);
 }
-/*
-#include <stdio.h>
-
-int main ()
-{
-	printf("%s\n", ft_substr("hola", 0, 18446744073709551615));
-}*/

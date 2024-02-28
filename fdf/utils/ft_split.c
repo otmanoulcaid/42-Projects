@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:08:46 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 21:02:28 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:24:31 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ static void	free_space(char **str, int len)
 
 	i = 0;
 	while (i < len)
-	{
-		free(*(str + i));
-		i++;
-	}
+		free(*(str + i++));
 	free(str);
 }
 
@@ -79,10 +76,7 @@ char	**ft_split(char const *s, char c, int *words)
 		s = get_offset(s, c);
 		*(strings + i) = ft_substr(s, 0, len_word(s, c));
 		if (!*(strings + i))
-		{
-			free_space(strings, i);
-			return (NULL);
-		}
+			free_space(strings, i - 1);
 		i++;
 		s += len_word(s, c);
 	}

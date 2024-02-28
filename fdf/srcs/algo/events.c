@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 13:47:18 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/02/27 00:23:53 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:47:40 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	initial_state(t_fdf *data)
 		init_mlx_content(data);
 		data->is_iso = 0;
 	}
+	data->zoom = get_zoom(data);
 }
 
 static void	rotating(int key, t_fdf *data)
