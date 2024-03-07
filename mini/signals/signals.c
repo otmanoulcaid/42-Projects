@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 10:39:48 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/06 10:22:24 by tamehri          ###   ########.fr       */
+/*   Created: 2024/03/03 19:26:37 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/03/07 14:42:14 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	throw_error(char *str)
+void	ctl_c(int signal)
 {
-	ft_putendl_fd(str, 2);
-	return (1);
+    if (signal == SIGINT)
+	{
+    	rl_on_new_line();
+    	rl_replace_line("", 0);
+		write(1, "\n", 1);
+		rl_redisplay();
+	}
+}
+void	signals(void)
+{
+	rl_catch_signals = 0;
+	signal(SIGINT, ctl_c);
+	signal(SIGQUIT, SIG_IGN);
 }

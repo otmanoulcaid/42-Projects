@@ -3,30 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 20:05:47 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/02 10:39:02 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:43:16 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct	s_shell t_shell;
-typedef	struct	s_cmds	t_cmds;
+typedef struct s_shell		t_shell;
+typedef struct s_tokens		t_tokens;
+typedef enum e_class		t_class;
+typedef struct s_env		t_env;
 
-struct	s_cmds
+enum	e_class
 {
-	int	hi;
+	WORD = 1,
+	OUTPUT_RED,
+	INPUT_RED,
+	HEREDOC,
+	APPEND,
+	PIPE,
+};
+
+struct s_env
+{
+	char			*environ;
+	struct s_env	*next;
+	struct s_env	*prev;
+};
+
+struct	s_tokens
+{
+	char		*string;
+	int			index;
+	t_class		class;
+	t_tokens	*right;
+	t_tokens	*left;
 };
 
 struct	s_shell
 {
-	char	*line;
-	// t_list	*token;
-	// t_cmds	**cmds;
-	// char	**env;
+	t_env		*env;
+	char		*line;
+	t_tokens	*token;
+	int			**pipes;
+	int			*pids;
+	int			number_of_tokens;
+	int			number_of_commands;
+	int			status;
 };
 
 #endif

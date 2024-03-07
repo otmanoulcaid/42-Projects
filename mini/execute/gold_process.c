@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   gold_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 10:17:12 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/05 14:09:23 by tamehri          ###   ########.fr       */
+/*   Created: 2024/03/07 17:15:56 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/03/07 17:18:24 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#include "../includes/minishell.h"
 
-# define ERR_MAL	"Error : malloc"
-
-#endif
+void	process(t_shell *data, t_tokens *token, int input, int output)
+{
+	if (data || token || input || output)
+		puts("coming soon...");
+}

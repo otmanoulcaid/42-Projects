@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 10:17:12 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/05 14:09:23 by tamehri          ###   ########.fr       */
+/*   Created: 2024/03/06 16:38:30 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/03/06 23:58:50 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#include "../includes/minishell.h"
 
-# define ERR_MAL	"Error : malloc"
+void	ft_exit(void)
+{
+	exit(EXIT_SUCCESS);
+}
 
-#endif
+//until what we will do exactly
