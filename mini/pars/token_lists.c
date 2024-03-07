@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 14:49:59 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/07 00:22:52 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:30:54 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ void	tokenadd_back(t_tokens **lst, t_tokens *new)
 {
 	t_tokens	*temp;
 
+	// puts("here");
+	if (!lst)
+		return ;
+	if (!new)
+		return ;
 	if (!*lst)
 	{
 		*lst = new;
 		return ;
 	}
-	if (!new)
-		return ;
 	temp = *lst;
 	while (temp->right)
 		temp = temp->right;

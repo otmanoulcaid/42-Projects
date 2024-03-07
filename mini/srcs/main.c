@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:15 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/07 15:37:08 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:55:35 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	read_line(t_shell *data)
 
 void	f(void)
 {
-	system("leaks minishell");
+	system("lsof -c minishell");
 }
 
 int	main(int ac, char **av, char **env)
 {
 	t_shell	data;
 
-	atexit(f);
+	// atexit(f);
 	signals();
 	((void)ac, (void)av);
 	if (ac != 1)
