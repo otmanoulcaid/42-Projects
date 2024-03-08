@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:15 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/07 19:55:35 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 23:26:46 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	minishell(t_shell *data)
         return ;
     check_syntax(data);
     command_tree(data);
-	execute(data);
+	// execute(data);
 }
 
 void	read_line(t_shell *data)
@@ -39,7 +39,7 @@ void	read_line(t_shell *data)
 		line = NULL;
 		data->line = NULL;
 		tokenclear(&data->token);
-		env_clear(&data->env);
+		env_clear(&data->env_list);
 	}
 }
 
@@ -57,6 +57,7 @@ int	main(int ac, char **av, char **env)
 	((void)ac, (void)av);
 	if (ac != 1)
 		return (throw_error("Error "));
-	data.env = get_env(env);
+	data.env_list = get_env(env);
+	data.env = env;
 	read_line(&data);
 }

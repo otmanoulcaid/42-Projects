@@ -6,15 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:39:06 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/07 00:23:41 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 23:14:11 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	env_clear(t_env **env);
-void	env_add_back(t_env **linked, t_env *node);
-t_env	*env_new(char *environ);
 
 t_env	*sort_list(t_env *env)
 {
@@ -41,24 +37,28 @@ t_env	*sort_list(t_env *env)
 	return (env);
 }
 
-void	ft_export(t_env **env, char *to_add, int add) //t_tokens *token instead of char *to_add
-{													// to handle exporting multiple varriable
+void	ft_export(t_env **env, char **to_add, int add)
+{
 	t_env	*node;
 	t_env	*tmp;
+	int		i;
 
-	tmp = *env;
-	tmp = sort_list(tmp);
 	if (add)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		node = env_new(to_add);
-		if (!node)
-			ft_throw("ERROR_LSTNEW_EXPORT");
-		tmp->next = node;
+		i = -1;
+		while (to_add[++i])
+		{
+			node = env_new(to_add);
+			if (!node)
+				ft_throw("ERROR_LSTNEW_EXPORT");
+			env_add_back(env, node);
+		}
 		return ;
 	}
-	print(&node);
+	tmp = *env;
+	print(sort_list(tmp));
 }
 
 // int	main(int ac, char **av, char **env)

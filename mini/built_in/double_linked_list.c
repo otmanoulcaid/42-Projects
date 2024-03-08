@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:45:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/07 11:34:30 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:54:16 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@
 // 		tmp = tmp->next;
 // 	}
 // }
-
-void	ft_throw(char *strerr)
-{
-	printf("%s\n", strerr);
-	exit(EXIT_FAILURE);
-}
 
 t_env	*env_new(char *environ)
 {

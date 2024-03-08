@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 20:05:47 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/07 19:17:21 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 23:22:26 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ struct	s_tokens
 
 struct	s_shell
 {
-	t_env		*env;
+	char		**env;
+	t_env		*env_list;
 	char		*line;
 	t_tokens	*token;
 	int			**pipes;

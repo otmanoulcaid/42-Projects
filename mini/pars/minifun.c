@@ -6,17 +6,17 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:57:51 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/07 00:21:39 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 23:13:47 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	print(t_env **env)
+void	print(t_env *env)
 {
 	t_env	*tmp;
 
-	tmp = *env;
+	tmp = env;
 	while (tmp)
 	{
 		ft_putendl_fd(tmp->environ, 1);

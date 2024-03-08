@@ -6,20 +6,20 @@ SRC				=	srcs/main.c\
 					pars/classify.c \
 					pars/expansion.c \
 					built_in/ft_cd.c  \
+					signals/signals.c	 \
+					built_in/ft_env.c     \
+					built_in/ft_pwd.c      \
+					pars/token_lists.c		\
+					built_in/ft_exit.c		 \
+					built_in/ft_echo.c		  \
+					pars/command_tree.c		   \
+					built_in/ft_unset.c			\
+					pars/process_token.c 		 \
+					built_in/ft_export.c		  \
+					execute/shell_environement.c    \
+					built_in/double_linked_list.c    \
+					# execute/gold_process.c		   \
 					execute/execute.c  \
-					signals/signals.c	\
-					built_in/ft_env.c    \
-					built_in/ft_pwd.c     \
-					pars/token_lists.c 	   \
-					built_in/ft_exit.c	    \
-					built_in/ft_echo.c		 \
-					pars/command_tree.c	   	  \
-					built_in/ft_unset.c	 	   \
-					pars/process_token.c		\
-					built_in/ft_export.c		 \
-					execute/gold_process.c		  \
-					execute/shell_environement.c   \
-					built_in/double_linked_list.c   \
 
 GREEN			=	'\033[1;32m'
 NONE			=	'\033[0m'

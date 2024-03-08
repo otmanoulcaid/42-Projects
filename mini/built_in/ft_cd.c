@@ -6,19 +6,19 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:05 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/07 00:06:21 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 22:45:08 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_cd(char *path, int ac)
+void	ft_cd(char *path)
 {
 	struct stat	st;
 
-	if (ac > 1 && stat(path, &st) < 0)
+	if (stat(path, &st) < 0)
 		ft_throw("NO_SUCH_FILE_OR_DIRECTORY");
-	if (ac > 1 && !S_ISDIR(st.st_mode))
+	if (!S_ISDIR(st.st_mode))
 		ft_throw("IS_NOT_A_DIRECTORY");
 	if (!path)
 	{

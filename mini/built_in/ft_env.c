@@ -6,13 +6,13 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:26:43 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/07 00:07:46 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/08 23:04:53 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_env(t_env	*env)
+void	ft_env(t_env *env)
 {
 	t_env	*tmp;
 
