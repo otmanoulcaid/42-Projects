@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 23:03:31 by ooulcaid          #+#    #+#             */
-/*   Updated: 2023/11/12 14:01:37 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:48:03 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	ft_put_values(const char *s, va_list args, unsigned int *n)
 	while (*s)
 	{
 		while (*s && *s != '%')
-		{
-			ft_putchar(*s, n);
-			s++;
-		}
+			ft_putchar(*s++, n);
 		if (*s && (*(s + 1) == 'c' || *(s + 1) == '%'))
 			ft_char(args, *(s + 1), n);
 		else if (*s && *(s + 1) == 's')

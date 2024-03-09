@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:57:51 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/08 23:13:47 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:21:21 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	print(t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		ft_putendl_fd(tmp->environ, 1);
+		ft_putstr_fd(tmp->name, 1);
+		ft_putstr_fd("=", 1);
+		ft_putendl_fd(tmp->value, 1);
 		tmp = tmp->next;
 	}
 }

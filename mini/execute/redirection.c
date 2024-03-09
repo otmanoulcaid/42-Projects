@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:10:57 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/08 23:49:40 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 10:56:44 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	input_red(char *file, int input, int output)
 		ft_throw("ERROR_OPEN_REDIRECTION_PROCESS");
 	if (dup2(fd, output) < 0)
 		ft_throw("ERROR_DUP2_REDIRECTION_PROCESS");
+	if (-1 == close(fd))
+		ft_throw("ERROR_CLOSE_REDIRECTION_PROCESS");
 }
 
 static void	output_red(char *file, int input, int output)
@@ -32,6 +34,8 @@ static void	output_red(char *file, int input, int output)
 		ft_throw("ERROR_OPEN_REDIRECTION_PROCESS");
 	if (dup2(fd, output) < 0)
 		ft_throw("ERROR_DUP2_REDIRECTION_PROCESS");
+	if (-1 == close(fd))
+		ft_throw("ERROR_CLOSE_REDIRECTION_PROCESS");
 }
 
 static void	append_red(char *file, int input, int output)
@@ -43,6 +47,8 @@ static void	append_red(char *file, int input, int output)
 		ft_throw("ERROR_OPEN_REDIRECTION_PROCESS");
 	if (dup2(fd, output) < 0)
 		ft_throw("ERROR_DUP2_REDIRECTION_PROCESS");
+	if (-1 == close(fd))
+		ft_throw("ERROR_CLOSE_REDIRECTION_PROCESS");
 }
 
 static	void	herdoc_red(char *eof, int input, int output)
@@ -54,26 +60,28 @@ static	void	herdoc_red(char *eof, int input, int output)
 		ft_throw("ERROR_HERDOC_REDIRECTION_PROCESS");
 	if (dup2(fd, output) < 0)
 		ft_throw("ERROR_DUP2_REDIRECTION_PROCESS");
+	if (-1 == close(fd))
+		ft_throw("ERROR_CLOSE_REDIRECTION_PROCESS");
 }
 
 void	*red_process(t_tokens *token, int input, int output, int *nbr)
 {
 	while (token && token->string[0] != '|')
 	{
-		if (token->class == APPEND && token->right->string[0] != '|')
+		if (token->class == APPEND)
 			(append_red(token->right->string, input, output),
 				token = token->right);
-		else if (token->class == OUTPUT_RED && token->right->string[0] != '|')
+		else if (token->class == OUTPUT_RED)
 		{
 			token = token->right;
-			append_red(token->string, input, output);
+			output_red(token->string, input, output);
 		}
-		else if (token->class == INPUT_RED && token->right->string[0] != '|')
+		else if (token->class == INPUT_RED)
 		{
 			token = token->right;
-			append_red(token->string, input, output);
+			input_red(token->string, input, output);
 		}
-		else if (token->class == HEREDOC && token->right->string[0] != '|')
+		else if (token->class == HEREDOC)
 		{
 			token = token->right;
 			herdoc_red(token->string, input, output);

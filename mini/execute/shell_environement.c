@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:18:12 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/07 00:12:25 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:21:41 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_env	*get_env(char **env)
 		content = ft_strdup(env[i]);
 		if (!content)
 			ft_throw("ERROR_STRDUP_GET_ENV");
-		node = env_new(content);
+		node = env_new(content, NULL);
 		if (!node)
 			ft_throw("ERROR_NEW_NODE_GET_ENV");
 		env_add_back(&list, node);

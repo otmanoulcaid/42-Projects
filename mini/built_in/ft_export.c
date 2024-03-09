@@ -6,17 +6,25 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:39:06 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/08 23:14:11 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:19:35 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void	swap(char **s1, char **s2)
+{
+	char	*help;
+
+	help = *s1;
+	*s1 = *s2;
+	*s2 = help;
+}
+
 t_env	*sort_list(t_env *env)
 {
 	t_env	*i;
 	t_env	*j;
-	char	*help;
 
 	i = env;
 	while (i->next)
@@ -24,12 +32,8 @@ t_env	*sort_list(t_env *env)
 		j = i->next;
 		while (j)
 		{
-			if (ft_strcmp(i->environ, j->environ) > 0)
-			{
-				help = i->environ;
-				i->environ = j->environ;
-				j->environ = help;
-			}
+			if (ft_strcmp(i->name, j->name) > 0)
+				(swap(&(i->name), &(j->name)), swap(&(j->value), &(j->value)));
 			j = j->next;
 		}
 		i = i->next;
@@ -43,6 +47,7 @@ void	ft_export(t_env **env, char **to_add, int add)
 	t_env	*tmp;
 	int		i;
 
+	tmp = *env;
 	if (add)
 	{
 		while (tmp->next)
@@ -50,7 +55,7 @@ void	ft_export(t_env **env, char **to_add, int add)
 		i = -1;
 		while (to_add[++i])
 		{
-			node = env_new(to_add);
+			node = env_new(to_add[i], NULL);
 			if (!node)
 				ft_throw("ERROR_LSTNEW_EXPORT");
 			env_add_back(env, node);

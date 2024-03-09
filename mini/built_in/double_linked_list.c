@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:45:10 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/08 14:54:16 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:19:10 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
 // 	}
 // }
 
-t_env	*env_new(char *environ)
+t_env	*env_new(char *name, char *value)
 {
 	t_env	*env;
 
 	env = (t_env *)malloc(sizeof(t_env));
 	if (!env)
 		return (NULL);
-	env->environ = environ;
+	env->name = name;
+	env->value = value;
 	env->next = NULL;
 	env->prev = NULL;
 	return (env);
@@ -80,7 +81,7 @@ void	env_clear(t_env **env)
 	while (tmp)
 	{
 		*env = (*env)->next;
-		(free(tmp->environ), free(tmp));
+		(free(tmp->name), free(tmp->value), free(tmp));
 		tmp = *env;
 	}
 }

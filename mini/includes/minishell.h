@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:50 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/08 23:40:32 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:18:41 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		free_2d(char **strings);
 void		print(t_env *env);
 t_env		*get_env(char **env);
 void		env_clear(t_env **env);
-t_env		*env_new(char *environ);
+t_env		*env_new(char *name, char *value);
 void		env_add_back(t_env **linked, t_env *node);
 
 /*--------------end_environement_operation--------------*/

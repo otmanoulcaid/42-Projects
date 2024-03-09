@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:22:07 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/08 23:20:27 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:15:14 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	unset(t_env **env, char **vars)
 	{
 		while (node)
 		{
-			if (!ft_strcmp(node->environ, vars[i]))
+			if (!ft_strcmp(node->name, vars[i]))
 			{
 				to_rm = node;
 				if (node->prev)
 					node->prev->next = node->next;
 				else
 					(*env) = (*env)->next;
-				(free(to_rm), to_rm = NULL);
+				(free(to_rm->value), free(to_rm->name), free(to_rm));
 				break ;
 			}
 			node = node->next;
