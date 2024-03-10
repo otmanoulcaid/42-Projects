@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:15 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/10 15:04:50 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:20:08 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void	read_line(t_shell *data)
 
 	while (1)
 	{
-		line = readline("\033[1;32m➜  \033[1;36mminishell \033[0m");
-		if (!line)
+		line = readline("mminishell : ");
+
+		if (!line)	
 			return ;
 		else if (*line)
 		{
