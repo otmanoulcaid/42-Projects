@@ -6,17 +6,11 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:32:32 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/09 20:59:12 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:56:39 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// 		if (fcntl(i, F_GETFD) != -1) {
-// 			dprintf(2, "%d, %d is open\n", getpid(), i);
-// 		}
-
-// void	c() {system("lsof -c minishell");}
 
 void	first_process(t_shell *data, t_tokens *token)
 {
@@ -35,17 +29,15 @@ void	first_process(t_shell *data, t_tokens *token)
 	{
 		if (data->number_of_commands > 1)
 		{
-			if (close(data->pipes[0][0]) < 0)
-				ft_throw("ERROR_CLOSE_CHILD_FIRST");
+			close(data->pipes[0][0]);
 			process(data, token, STDIN_FILENO, data->pipes[0][1]);
 		}
 		else
 			process(data, token, STDIN_FILENO, STDOUT_FILENO);
 	}
 	else if (data->pids[0] && data->number_of_commands > 1)
-		if (close(data->pipes[0][1]) < 0)
-			ft_throw("ERROR_CLOSE_PARENT_FIRST");
-	waitpid(data->pids[0], &(data->status), 0);
+		close(data->pipes[0][1]);
+	waitpid(data->pids[0], &(data->status), 0),
 	data->status = WEXITSTATUS(data->status);
 }
 
@@ -61,8 +53,7 @@ void	last_process(t_shell *data, t_tokens *token)
 		(process(data, token,
 				data->pipes[i - 2][0], STDOUT_FILENO));
 	else
-		if (close(data->pipes[i - 2][0]) < 0)
-			ft_throw("ERROR_CLOSE_PARENT_LAST");
+		close(data->pipes[i - 2][0]);
 }
 
 void	middle_process(t_shell *data, t_tokens *token)
@@ -82,14 +73,12 @@ void	middle_process(t_shell *data, t_tokens *token)
 			ft_throw("ERROR_FORK_MIDDLE_COMMAND");
 		if (!data->pids[i])
 		{
-			if (close(data->pipes[i][0]) < 0)
-				ft_throw("ERROR_CLOSE_MIDDLE_CHILD");
+			close(data->pipes[i][0]);
 			process(data, token, data->pipes[i - 1][0], data->pipes[i][1]);
 		}
-		else if (close(data->pipes[i][1]) < 0
-			|| close(data->pipes[i - 1][0]) < 0)
-			ft_throw("ERROR_CLOSE_MIDDLE_PARENT");
-		token = token->left;
+		else
+			(close(data->pipes[i][1]), close(data->pipes[i - 1][0]),
+				token = token->left);
 	}
 	last_process(data, token);
 }

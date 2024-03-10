@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:49:09 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/07 19:27:44 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/10 13:29:12 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/minishell.h"
 
@@ -44,7 +43,7 @@ static int	token_len(char const *s, int *index)
 	{
 		if (*(s + len) == '\"' || *(s + len) == '\'')
 		{
-			assign(&c, *(s + len)), assign(&len, len + 1);
+			(assign(&c, *(s + len)), assign(&len, len + 1));
 			while (*(s + len) && *(s + len) != c)
 				len++;
 		}
@@ -75,8 +74,7 @@ char	*init_token(char const *s, int *index, int lenght)
 
 /*
 	this function will proccess the given line and split into tokens while 
-	removing single quotes quotes and single quotes and expand envirement 
-	variables
+	removing single quotes and double quotes and expand envirement variables
 */
 int	lexer(t_shell *data)
 {

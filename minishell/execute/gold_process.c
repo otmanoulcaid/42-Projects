@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:15:56 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/09 21:03:32 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:56:55 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static	void	ft_execve(t_shell *data, char **cmd_arg, int input, int output)
 	char	*abs_path;
 
 	abs_path = absolute_path(cmd_arg[0], data->env);
-	if (input != STDIN_FILENO && dup2(input, STDIN_FILENO) < 0 )
+	if (input != STDIN_FILENO && dup2(input, STDIN_FILENO) < 0)
 		ft_throw("ERR_DUP2_EXECVE");
-	if (output != STDOUT_FILENO && dup2(output, STDOUT_FILENO) < 0 )
+	if (output != STDOUT_FILENO && dup2(output, STDOUT_FILENO) < 0)
 		ft_throw("ERR_DUP2_EXECVE");
 	execve(abs_path, cmd_arg, data->env);
-	ft_throw(strerror(errno));
+	ft_throw("BAD_ADDRESS");
 }
 
 void	process(t_shell *data, t_tokens *token, int input, int output)

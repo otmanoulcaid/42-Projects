@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 15:05:21 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/09 18:36:50 by tamehri          ###   ########.fr       */
+/*   Created: 2024/03/10 10:09:12 by tamehri           #+#    #+#             */
+/*   Updated: 2024/03/10 11:08:06 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,13 @@ static void	expand_1(t_shell *data, char **s, char *tmp, int i[3])
 		while (*(nbr + j))
 			*(*s + i[1]++) = *(nbr + j++);
 		i[0] += 2;
+		free(nbr);
 	}
 	else
 		expand_2(data, s, tmp, i);
 }
 
-void    fill_token(t_shell *data, char **s, char *tmp, int i[3])
+void	fill_token(t_shell *data, char **s, char *tmp, int i[3])
 {
 	if (*(tmp + i[0]) == '\"' || *(tmp + i[0]) == '\'')
 	{

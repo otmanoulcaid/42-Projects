@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:10:05 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/09 20:57:49 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:02:16 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_cd(char *path)
 	}
 	else if (chdir(path) < 0)
 		ft_throw(strerror(errno));
-	puts(getcwd(NULL, 0));
+	printf("%d\n", st.st_mode);
+	ft_putstr_fd(getcwd(NULL, 0), 1);
 }
 // int main(int ac, char **av)
 // {
