@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:56:24 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/10 14:57:48 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/10 23:03:25 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ int	heredoc(char *del)
 
 	fd2 = open(".tmp", O_WRONLY | O_CREAT, 0644);
 	if (fd2 < 0)
-		ft_throw("ERROR_OPEN_HERDOC");
+		ft_throw("ERROR_OPEN_HERDOC", 1);
 	fd = open(".tmp", O_RDONLY);
 	if (fd < 0)
-		ft_throw("ERROR_OPEN_HERDOC");
+		ft_throw("ERROR_OPEN_HERDOC", 1);
 	if (unlink(".tmp") < 0)
-		ft_throw("ERRON_UNLINK_HERDOC");
+		ft_throw("ERRON_UNLINK_HERDOC", 1);
 	while (1)
 	{
 		ft_putstr_fd("here_doc > ", 1);
-		line = get_next_line(1);
-		if (!line || (!ft_strncmp(line, del, ft_strlen(line) - 1)
-				&& ((ft_strlen(line) - 1) == ft_strlen(del))))
+		line = readline("");
+		if (!line || (!ft_strcmp(line, del)))
 			break ;
 		write(fd2, line, ft_strlen(line));
+		write(fd2, "\n", 1);
 		(free(line), line = NULL);
 	}
 	close(fd2);

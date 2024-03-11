@@ -19,13 +19,11 @@ SRC				=	srcs/main.c  \
 					built_in/ft_export.c		   \
 					execute/builtin.c         	    \
 					execute/execute.c                \
-					execute/heredoc.c				  \
+					execute/heredoc.c 				  \
 					execute/redirection.c              \
-					execute/gold_process.c				\
+					execute/gold_process.c		        \
 					execute/path_processing.c            \
-					signals/signals.c 					  \
-					get_next_line/get_next_line.c		   \
-					get_next_line/get_next_line_utils.c
+					signals/signals.c
 
 GREEN			=	'\033[1;32m'
 NONE			=	'\033[0m'
@@ -36,7 +34,7 @@ OBJ				=	$(SRC:.c=.o)
 CFLAGS			=	-Wall -Wextra -Werror -g
 READLINE		=	-lreadline
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADERS)
 	@make -C libft

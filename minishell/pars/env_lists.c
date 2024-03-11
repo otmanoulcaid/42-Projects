@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   env_lists.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:05:56 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/09 18:50:29 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/03/11 14:45:20 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	print(t_env *env)
+void	print(t_env *env, int export)
 {
 	t_env	*tmp;
 
 	tmp = env;
 	while (tmp)
 	{
-		printf("%s=%s\n", tmp->name, tmp->value);
+		if (export)
+			printf("declare -x %s=\"%s\"\n", tmp->name, tmp->value);
+		else
+			printf("%s=%s\n", tmp->name, tmp->value);
 		tmp = tmp->next;
 	}
 }

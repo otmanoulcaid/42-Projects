@@ -5,26 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 10:39:06 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/09 11:19:35 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/03/11 15:05:03 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/03/11 15:05:04 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	swap(char **s1, char **s2)
+t_env	*copy_list(t_env *list)
 {
-	char	*help;
+	t_env	*env;
+	t_env	*node;
+	char	*name;
+	char	*value;
 
-	help = *s1;
-	*s1 = *s2;
-	*s2 = help;
+	env = NULL;
+	while (list)
+	{
+		name = ft_strdup(list->name);
+		value = ft_strdup(list->value);
+		if (!name || !value)
+			ft_throw("ERROR_DUP_EXPORT", 1);
+		node = env_new(name, value);
+		if (!node)
+			ft_throw("ERROR_NEW_NODE_EXPORT", 1);
+		env_add_back(&env, node);
+		list = list->next;
+	}
+	return (env);
 }
 
-t_env	*sort_list(t_env *env)
+void	sort_list(t_env *env)
 {
 	t_env	*i;
 	t_env	*j;
+	char	*help;
 
 	i = env;
 	while (i->next)
@@ -33,57 +48,73 @@ t_env	*sort_list(t_env *env)
 		while (j)
 		{
 			if (ft_strcmp(i->name, j->name) > 0)
-				(swap(&(i->name), &(j->name)), swap(&(j->value), &(j->value)));
+			{
+				help = i->name;
+				i->name = j->name;
+				j->name = help;
+				help = i->value;
+				i->value = j->value;
+				j->value = help;
+			}
 			j = j->next;
 		}
 		i = i->next;
 	}
-	return (env);
+	print(env, 0);
 }
 
-void	ft_export(t_env **env, char **to_add, int add)
+void	new_var(t_env *env, char **splited)
 {
+	t_env	*tmp;
 	t_env	*node;
+
+	tmp = env;
+	while (tmp->next)
+		tmp = tmp->next;
+	node = env_new(splited[0], splited[1]);
+	if (!node)
+		ft_throw("ERROR_LSTNEW_EXPORT", 1);
+	env_add_back(&env, node);
+}
+
+void	append(t_env *env, char **splited)
+{
+	t_env	*tmp;
+	char	*join;
+
+	tmp = env;
+	while (env->next && ft_strncmp(splited[0], env->name,
+			ft_strlen(splited[0]) - 1))
+		env = env->next;
+	puts(env->value);
+	join = ft_strjoin(env->value, splited[1]);
+	if (!join)
+		ft_throw("ERROR_SUBSTR_APPEND<<<", 1);
+	(free(env->value), env->value = NULL);
+	env->value = join;
+	env = tmp;
+}
+
+void	ft_export(t_env *env, char **to_add, int add)
+{
+	char	**splited;
 	t_env	*tmp;
 	int		i;
 
-	tmp = *env;
-	if (add)
+	i = -1;
+	while (add && to_add[++i])
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		i = -1;
-		while (to_add[++i])
-		{
-			node = env_new(to_add[i], NULL);
-			if (!node)
-				ft_throw("ERROR_LSTNEW_EXPORT");
-			env_add_back(env, node);
-		}
-		return ;
+		splited = ft_split(to_add[i], '=');
+		if (!splited)
+			ft_throw("ERROR_SPLIT_EXPORT", 1);
+		if (splited[0][ft_strlen(splited[0]) - 1] == '+')
+			append(env, splited);
+		else
+			new_var(env, splited);
 	}
-	tmp = *env;
-	print(sort_list(tmp));
+	if (!add)
+	{
+		tmp = copy_list(env);
+		(sort_list(tmp), env_clear(&tmp));
+	}
 }
-
-// int	main(int ac, char **av, char **env)
-// {
-// 	char *str;
-// 	int	i;
-// 	i = 0;
-// 		*list_env = NULL;
-// 		*node;
-// 	while (env[i])
-// 	{
-// 		str = ft_strdup(env[i]);
-// 		if (!str)
-// 			ft_throw("EXPORT_STRDUP_ERROR");
-// 		node = tokennew(str);
-// 		if (!node)
-// 			ft_throw("hna");
-// 		tokenadd_back(&list_env, node);
-// 		i++;
-// 	}
-// 	export(&list_env, NULL, 0);
-// 	tokenclear(&list_env);
-// }

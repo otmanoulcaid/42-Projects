@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:50 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/10 11:20:42 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/03/11 14:48:59 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 int			expansion_value_1(t_shell *data, char *str, int *i);
 int			ft_strcmp(char *s1, char *s2);
 int			bunny_ears(char **s, char c);
-void		check_syntax(t_shell *data);
+int			check_syntax(t_shell *data);
 void		command_tree(t_shell *data);
 void		assign(int *nbr, int add);
 int			lexer(t_shell *data);
@@ -47,7 +47,7 @@ int			is_space(int c);
 /*-------------------error_handling--------------------*/
 
 int			throw_error(char *str);
-void		ft_throw(char *strerr);
+void		ft_throw(char *strerr, int status);
 
 /*-------------------error_handling--------------------*/
 
@@ -79,33 +79,27 @@ void		process(t_shell *data, t_tokens *token, int input, int output);
 void		red_process(t_tokens *token, int input, int output, int *nbr);
 void		exec_builtin(t_shell *data, char **cmd_argd);
 char		*absolute_path(char	*cmd, char **env);
-int			is_builtin(char *string);
 void		execute(t_shell *data);
-int			heredoc(char *del);
 void		signals(void);
+int			is_builtin(char *string);
+int			heredoc(char *del);
 
 /*-----------------end_execute_operations---------------*/
 
 /*--------------------built_in_command------------------*/
 
-void		ft_export(t_env **env, char **to_add, int add);
+void		ft_export(t_env *env, char **to_add, int add);
 void		ft_unset(t_env **env, char **vars);
 void		ft_echo(char **argument);
 void		ft_env(t_env *env);
+void		ft_exit(char **args);
 void		ft_cd(char *path);
-void		ft_exit(void);
 void		ft_pwd(void);
 
 /*------------------end_built_in_command----------------*/
 
-/*---------------------get_next_line-------------------*/
-
-char		*gn_strjoin(char *s1, char *s2);
-char		*gn_strchr(const char *s);
-size_t		gn_strlen(const char *s);
-char		*get_next_line(int fd);
-void		print(t_env *env);
-
-/*--------------------end_get_next_line-----------------*/
+/* FUNCTIONS */
+void		print(t_env *env, int export);
+void		free_2d(char **free2d);
 
 #endif
