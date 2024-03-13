@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 15:05:31 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/11 15:05:32 by ooulcaid         ###   ########.fr       */
+/*   Created: 2024/03/08 20:36:29 by ooulcaid          #+#    #+#             */
+/*   Updated: 2024/03/13 16:12:27 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ void	exec_builtin(t_shell *data, char **cmd_arg)
 	else if (!ft_strcmp(cmd_arg[0], "env"))
 		ft_env(data->env_list);
 	else if (!ft_strcmp(cmd_arg[0], "unset"))
-		ft_unset(&(data->env_list), cmd_arg + 1);
+		ft_unset(&data->env_list, cmd_arg + 1);
 	else if (!ft_strcmp(cmd_arg[0], "export") && cmd_arg[1])
-		ft_export((data->env_list), cmd_arg + 1, 1);
+		ft_export(&data->env_list, cmd_arg + 1, 1);
 	else if (!ft_strcmp(cmd_arg[0], "export"))
-		ft_export((data->env_list), NULL, 0);
+		ft_export(&data->env_list, NULL, 0);
 	else if (!ft_strcmp(cmd_arg[0], "exit"))
 		ft_exit(cmd_arg);
+	free_2d_char(cmd_arg);
 }

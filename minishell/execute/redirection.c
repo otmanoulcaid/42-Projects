@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:10:57 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/10 23:10:21 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:29:00 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ void	red_process(t_tokens *token, int input, int output, int *nbr)
 {
 	while (token && token->class != PIPE)
 	{
-		if (token->class == APPEND)
+		if (token->class == APPEND && token->stat == GENERAL)
 			(append_red(token->right->string, output),
 				token = token->right);
-		else if (token->class == OUTPUT_RED)
+		else if (token->class == OUT_RED)
 		{
 			token = token->right;
 			output_red(token->string, output);
 		}
-		else if (token->class == INPUT_RED)
+		else if (token->class == IN_RED)
 		{
 			token = token->right;
 			input_red(token->string, input);
@@ -84,7 +84,7 @@ void	red_process(t_tokens *token, int input, int output, int *nbr)
 			token = token->right;
 			herdoc_red(token->string, input);
 		}
-		else if (token->class == WORD)
+		else// if (token->class == WORD || token->class == ENV)
 			(*nbr)++;
 		token = token->right;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 20:05:47 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/08 15:06:13 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/03/13 12:46:27 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,30 @@
 typedef struct s_shell		t_shell;
 typedef struct s_tokens		t_tokens;
 typedef enum e_class		t_class;
+typedef enum e_stat			t_stat;
 typedef struct s_env		t_env;
+
+enum	e_stat
+{
+	GENERAL = 'G',
+	INQUOTE = 'S',
+	INDQUOTE = 'D',
+};
 
 enum	e_class
 {
-	WORD = 1,
-	OUTPUT_RED,
-	INPUT_RED,
-	HEREDOC,
-	APPEND,
-	PIPE,
+	DEFAULT = 'D',
+	WORD = 'W',
+	WHITESPACE = 'S',
+	DQUOTE = '"',
+	QUOTE = '\'',
+	PIPE = '|',
+	IN_RED = '<',
+	OUT_RED = '>',
+	HEREDOC = 'H',
+	APPEND = 'A',
+	ENV = '$',
+	FILE_NAME = 'F',
 };
 
 struct s_env
@@ -39,10 +53,10 @@ struct s_env
 struct	s_tokens
 {
 	char		*string;
-	int			index;
 	t_class		class;
-	t_tokens	*right;
+	t_stat		stat;
 	t_tokens	*left;
+	t_tokens	*right;
 };
 
 struct	s_shell
@@ -50,12 +64,13 @@ struct	s_shell
 	char		**env;
 	t_env		*env_list;
 	char		*line;
-	t_tokens	*token;
+	t_tokens	*tokens;
+	t_tokens	*tree;
 	int			**pipes;
 	int			*pids;
-	int			number_of_tokens;
 	int			number_of_commands;
 	int			status;
+	t_stat		stat;
 };
 
 #endif
