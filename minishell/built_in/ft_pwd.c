@@ -6,23 +6,23 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:17:02 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/11 00:24:02 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:29:29 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_pwd(void)
+void	ft_pwd(t_shell *data)
 {
 	char	*position;
 
 	position = getcwd(NULL, 0);
 	if (!position)
-		ft_throw(strerror(errno), 1);
+		(perror("pwd"), data->status = 1);
 	ft_putendl_fd(position, 1);
+	if (position)
+		free(position);
+	data->status = 0;
+	if (data->number_of_commands > 1)
+		exit(0);
 }
-
-// int	main(void)
-// {
-// 	ft_pwd();
-// }

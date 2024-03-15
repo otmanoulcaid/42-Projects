@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:05:03 by ooulcaid          #+#    #+#             */
-/*   Updated: 2024/03/13 17:25:56 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:40:20 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_env	*copy_list(t_env *list)
 			value = ft_strdup(list->value);
 		node = env_new(name, value);
 		if (!node)
-			ft_throw("ERROR_NEW_NODE_EXPORT", 1);
+			return (perror("ERROR_NEW_NODE_EXPORT"), NULL);
 		env_add_back(&env, node);
 		list = list->next;
 		value = NULL;
@@ -78,7 +78,7 @@ void	new_var(t_env *env, char **splited)
 	{
 		node = env_new(splited[0], splited[1]);
 		if (!node)
-			ft_throw("ERROR_LSTNEW_EXPORT", 1);
+			return (perror("ERROR_LSTNEW_EXPORT"));
 		env_add_back(&env, node);
 	}
 }
@@ -109,31 +109,29 @@ void	append(t_env *env, char **splited)
 	}
 }
 
-void	ft_export(t_env **env, char **to_add, int add)
+void	ft_export(t_shell *data, t_env **env, char **to_add, int add)
 {
 	char	**splited;
 	t_env	*tmp;
 	int		i;
 
 	i = -1;
-	if (add)
+	while (add && to_add[++i])
 	{
-		while (to_add[++i])
-		{
-			splited = ft_split(to_add[i], '=');
-			if (!splited)
-				ft_throw("ERROR_SPLIT_EXPORT", 1);
-			if (splited[0][ft_strlen(splited[0]) - 1] == '+')
-				append(*env, splited);
-			else
-				new_var(*env, splited), free(splited);
-		}
+		splited = ft_split(to_add[i], '=');
+		if (!splited)
+			return (data->status = 1, perror("ERROR_SPLIT_EXPORT"));
+		if (splited[0][ft_strlen(splited[0]) - 1] == '+')
+			append(*env, splited);
+		else
+			(new_var(*env, splited), free(splited));
 	}
-	else
+	if (!add)
 	{
-		puts("seg");
 		tmp = copy_list(*env);
-		sort_list(tmp);
-		env_clear(&tmp);
+		(sort_list(tmp), env_clear(&tmp));
 	}
+	data->status = 0;
+	if (data->number_of_commands > 1)
+		exit(0);
 }

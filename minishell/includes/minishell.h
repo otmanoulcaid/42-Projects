@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:50 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/13 16:13:06 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:44:41 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "struct.h"
 # include "macros.h"
+# include "execute.h"
 # include "../libft/libft.h"
 
 # include <fcntl.h>
@@ -32,25 +33,31 @@
 
 /*-----------------------parse-------------------------*/
 
-// int			expansion_value_1(t_shell *data, char *str, int *i);
-// int			ft_strcmp(char *s1, char *s2);
-// int			bunny_ears(char **s, char c);
-// int 		    check_syntax(t_shell *data);
-// void		    command_tree(t_shell *data);
-// void		    assign(int *nbr, int add);
-// int			lexer(t_shell *data);
-// int			is_operator(int c);
-// int			is_space(int c);
+char		*meta_char_string(char *string, int *index);
+void		token_stat(t_shell *data, t_tokens *token);
+int			expand(t_shell *data, t_tokens *token);
+int			class_operator(t_tokens *token);
+int			ft_strcmp(char *s1, char *s2);
+void		token_class(t_tokens *token);
+void		token_class(t_tokens *token);
+void		command_tree(t_shell *data);
+int			check_syntax(t_shell *data);
+int			skip(t_tokens *token);
+int			keep(t_tokens *token);
+int			add(t_tokens *token);
+int			lexer(t_shell *data);
+int			pars(t_shell *data);
+int			meta_char(char c);
 
 /*---------------------end_parse-----------------------*/
 
 /*-------------------error_handling--------------------*/
 
-int			throw_error(char *str);
 void		ft_throw(char *strerr, int status);
-void	    free_2d_char(char **free2d);
+void		free_2d_char(char **free2d);
 void		free_2d_int(int **free2d);
-void		my_free(char *free);
+int			throw_error(char *str);
+void		my_free(char *ptr);
 
 /*-------------------error_handling--------------------*/
 
@@ -59,60 +66,31 @@ void		my_free(char *free);
 void		env_add_back(t_env **linked, t_env *node);
 void		get_env(t_shell *data, char **env);
 t_env		*env_new(char *name, char *value);
+char		**env_to_array(t_env *env_list);
 void		env_clear(t_env **env);
+int			env_size(t_env *env);
+void		print(t_env *env);
 
 /*--------------end_environement_operation--------------*/
 
 /*--------------------token_operation-------------------*/
 
-// void		fill_token(t_shell *data, char **s, char *tmp, int i[3]);
-// char		*init_token(char const *s, int *index, int lenght);
-// int			process_token(t_shell *data, t_tokens *token);
 void		tokenadd_back(t_tokens **lst, t_tokens *new);
 void		clear_command_tree(t_tokens **tree);
-// void		token_class(t_tokens *token);
 void		tokenclear(t_tokens **lst);
 int			tokensize(t_tokens *lst);
 t_tokens	*tokennew(char *content);
 
 /*------------------end_token_operation-----------------*/
 
-/*-------------------execute_operations-----------------*/
-void		process(t_shell *data, t_tokens *token, int input, int output);
-void		red_process(t_tokens *token, int input, int output, int *nbr);
-void		exec_builtin(t_shell *data, char **cmd_argd);
-char		*absolute_path(char	*cmd, char **env);
-int			is_builtin(char *string);
-void		execute(t_shell *data);
-int			heredoc(char *del);
-void		signals(void);
+// remember to remove this
+void fonction_mli7a(t_shell *data);
 
-/*-----------------end_execute_operations---------------*/
-
-/*--------------------built_in_command------------------*/
-
-void	    ft_export(t_env **env, char **to_add, int add);
-void	    ft_unset(t_env **env, char **vars);
-void	    ft_echo(char **argument);
-void	    ft_env(t_env *env);
-void		ft_exit(char **args);
-void	    ft_cd(char *path);
-void	    ft_pwd(void);
-
-/*------------------end_built_in_command----------------*/
 
 /* FUNCTIONS */
-void		command_tree(t_shell *data);
-void	    expand(t_shell *data, t_tokens *token);
-void        token_class(t_tokens *token);
-int	        check_syntax(t_shell *data);
-int	        ft_strcmp(char *s1, char *s2);
-int         meta_char(char c);
-int	        add(t_tokens *token);
-int	        skip(t_tokens *token);
-int	        keep(t_tokens *token);
-int         pars(t_shell *data);
-int	        lexer(t_shell *data);
-void	    print(t_env *env);
+void    print_tree(t_tokens *tree);
+void c();
+void f();
+void s();
 
 #endif

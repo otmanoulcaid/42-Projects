@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 10:39:48 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/13 15:40:07 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:33:17 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	my_free(char *str)
+void	my_free(char *ptr)
 {
-	if (str)
-		free(str);
-	str = NULL;
+	if (ptr)
+		free(ptr);
+	ptr = NULL;
 }
 
-void	free_2d_char(char **free2d)
+void	free_2d_int(int **free2d)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ void	free_2d_char(char **free2d)
 	free(free2d);
 }
 
-void	free_2d_int(int **free2d)
+void	free_2d_char(char **free2d)
 {
 	int	i;
 
@@ -50,4 +50,3 @@ void	ft_throw(char *strerr, int status)
 	printf("%s\n", strerr);
 	exit(status);
 }
-

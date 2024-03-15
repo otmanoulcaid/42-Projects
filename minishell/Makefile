@@ -2,9 +2,10 @@ SRC				=	srcs/main.c  \
 					srcs/error.c  \
 					parse/lexer.c \
 					parse/parse.c \
-					parse/minifun.c \
 					parse/expand.c \
 					parse/syntax.c \
+					parse/minifun.c \
+					parse/classify.c \
 					parse/env_lists.c \
 					parse/token_lists.c \
 					parse/command_tree.c \
@@ -16,12 +17,14 @@ SRC				=	srcs/main.c  \
 					built_in/ft_echo.c		     \
 					built_in/ft_unset.c	 	      \
 					built_in/ft_export.c		   \
+					execute/env_handling.c          \
 					execute/builtin.c         	     \
 					execute/execute.c                 \
 					execute/heredoc.c 				   \
 					execute/redirection.c               \
 					execute/gold_process.c		         \
-					execute/path_processing.c             \
+					execute/path_processing.c \
+					functions.c
 
 GREEN			=	'\033[1;32m'
 NONE			=	'\033[0m'
