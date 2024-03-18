@@ -1,5 +1,6 @@
 SRC				=	srcs/main.c  \
 					srcs/error.c  \
+					srcs/minishell.c \
 					parse/lexer.c \
 					parse/parse.c \
 					parse/expand.c \
@@ -9,6 +10,7 @@ SRC				=	srcs/main.c  \
 					parse/env_lists.c \
 					parse/token_lists.c \
 					parse/command_tree.c \
+					parse/heredoc_parse.c \
 					signals/signals.c \
 					built_in/ft_cd.c         \
 					built_in/ft_env.c         \
@@ -17,10 +19,12 @@ SRC				=	srcs/main.c  \
 					built_in/ft_echo.c		     \
 					built_in/ft_unset.c	 	      \
 					built_in/ft_export.c		   \
+					built_in/export2.c \
+					execute/single_cmd.c \
 					execute/env_handling.c          \
 					execute/builtin.c         	     \
 					execute/execute.c                 \
-					execute/heredoc.c 				   \
+					parse/heredoc.c 				   \
 					execute/redirection.c               \
 					execute/gold_process.c		         \
 					execute/path_processing.c \
