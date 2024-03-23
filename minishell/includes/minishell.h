@@ -6,7 +6,7 @@
 /*   By: ooulcaid <ooulcaid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:26:50 by tamehri           #+#    #+#             */
-/*   Updated: 2024/03/21 00:03:49 by ooulcaid         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:12:49 by ooulcaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "struct.h"
 # include "macros.h"
-# include "../libft/libft.h"
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -26,13 +25,12 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
-# include <dirent.h>
-# include <string.h>
-# include <errno.h>
 
 /*-------------------execute_operations-----------------*/
+
 void		signals(void);
 void		sig_h(int sig);
+void		ctl_s(int signal);
 void		ctl_c(int signal);
 void		execute(t_shell *data);
 int			is_builtin(char *string);
@@ -41,6 +39,7 @@ char		**get_args(t_tokens *token);
 void		dup_in_out(int input, int output);
 char		*absolute_path(char	*cmd, char **env);
 void		ft_execve(t_shell *data, char **cmd_arg);
+void		set_environment(t_shell *data, char **env);
 void		exec_builtin(t_shell *data, char **cmd_argd);
 void		process(t_shell *data, t_tokens *token, int input, int output);
 int			red_process(t_shell *data, t_tokens *token, int input, int output);
@@ -54,8 +53,8 @@ void		ft_cd(t_shell *data, char *path);
 void		ft_env(t_shell *data, t_env *env);
 void		ft_exit(t_shell *data, char **args);
 void		ft_echo(t_shell *data, char **argument);
+void		add_export(t_shell *data, char **to_add);
 void		ft_unset(t_shell *data, t_env **env, char **vars);
-void		add_export(t_shell *data, t_env **env, char **to_add);
 void		ft_export(t_shell *data, t_env **env, char **to_add, int add);
 
 /*------------------end_built_in_command----------------*/
@@ -86,21 +85,40 @@ int			meta_char(char c);
 
 /*---------------------end_parse-----------------------*/
 
+/*--------------------utils_functions-------------------*/
+
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		**ft_split(char const *s, char c);
+char		*ft_strchr(const char *s, int c);
+void		ft_putendl_fd(char *s, int fd);
+void		ft_putstr_fd(char *s, int fd);
+size_t		ft_strlen(const char *str);
+char		*ft_strdup(const char *s1);
+int			ft_atoi(const char *str);
+int			ft_isalpha(int c);
+int			ft_isalnum(int c);
+char		*ft_itoa(int n);
+
+/*------------------utils_functions_end------------------*/
+
 /*-------------------error_handling--------------------*/
 
+int			throw_error(t_shell *data, char *str, int status);
 void		free_2d_int(int **free2d, int nb_pipe);
 void		ft_throw(char *strerr, int status);
 void		free_2d_char(char **free2d);
 int			pars_error(t_shell *data);
-int			throw_error(char *str);
 void		my_free(char *ptr);
 
 /*-------------------error_handling--------------------*/
 
 /*----------------environement_operation---------------*/
 
+void		get_env(t_shell *data, char **env, char **def_env, char *name);
 void		env_add_back(t_env **linked, t_env *node);
-int			get_env(t_shell *data, char **env);
+char		*env_join(char const *s1, char const *s2);
 t_env		*env_new(char *name, char *value);
 char		**env_to_array(t_env *env_list);
 void		env_clear(t_env **env);
@@ -118,12 +136,5 @@ int			tokensize(t_tokens *lst);
 t_tokens	*tokennew(char *content);
 
 /*------------------end_token_operation-----------------*/
-
-// remember to remove this
-void		fonction_mli7a(t_shell *data);
-void		print_tree(t_tokens *tree);
-void		c(void);
-void		f(void);
-void		s(void);
 
 #endif
